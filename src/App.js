@@ -6,9 +6,7 @@ import { history } from "./redux/configureStore.js";
 function App() {
     return (
         <React.Fragment>
-            <ConnectedRouter history={history}>
-                <div></div>
-            </ConnectedRouter>
+            <ConnectedRouter history={history}></ConnectedRouter>
         </React.Fragment>
     );
 }
