@@ -25,116 +25,75 @@ const initialState = {
     is_login: false,
 };
 
-const loginAPI = (username, password) => {
-    return function (dispatch, getState, { history }) {
-        axios({
-            method: "POST",
-            url: "http://3.36.72.109/user/login",
-            data: {
-                username: username,
-                password: password,
-            },
-        })
-            .then((res) => {
-                // if (res.data.token != null) {
-                console.log(res.data);
-
-                const jwtToken = res.data[1].token;
-                const _id = res.data[0].username;
-
-                setCookie("user_login", jwtToken);
-                localStorage.setItem("user_name", _id);
-                axios.defaults.headers.common[
-                    "Authorization"
-                ] = `${jwtToken}`;
-                dispatch(
-                    logIn({
-                        username: username,
-                        password: password,
-                    })
-                );
-                window.alert("로그인 되었습니다!");
-                history.push("/");
-                // }
-                // else {
-                //   window.alert('ID를 다시 확인해주세요');
-                // }
-            })
-            .catch((err) => {
-                window.alert("아이디와 비밀번호가 맞지 않습니다");
-                window.location.reload();
-            });
-    };
+const loginAPI = (value) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: 'POST',
+      url: 'http://13.125.174.214/user/login',
+      data: {
+        email: value.email,
+        password: value.password,
+      },
+    })
+      .then((res) => {
+        // if (res.data.token != null) {
+        console.log(res.data);
+        
+        const jwtToken = res.data.token;
+        const _id = res.data.nickname;
+        
+        setCookie('user_login', jwtToken);
+        localStorage.setItem('user_name', _id);
+        axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
+        dispatch(
+          logIn({
+            email: value.email,
+            password: value.password,
+          })
+        );
+        window.alert('로그인 되었습니다!');
+        history.push('/main');
+        // }
+        // else {
+        //   window.alert('ID를 다시 확인해주세요');
+        // }
+      })
+      .catch((err) => {
+        console.log(err)
+       
+      });
+  };
 };
-// const loginAPI = (username, password) => {
-//   return function (dispatch, getState, { history }) {
-//     axios({
-//       method: 'GET',
-//       url: 'http://52.79.109.55/user/login',
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json;charset=UTF-8',
-//         'Access-Control-Allow-Origin': '*',
-//       },
-//       data: {},
-//     })
-//       .then((res) => {
-//         for (let i = 0; i < res.data.length; i++) {
-//           let _id = res.data[i]['username'];
-//           let _pwd = res.data[i]['password'];
-//           if (id === _id && pwd === _pwd) {
-//             // axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
-//             dispatch(
-//               logIn({
-//                 username: username,
-//                 password: password,
-//               })
-//             );
-//             window.alert('로그인 되었습니다!');
-//             history.push('/');
-//             return;
-//           } else {
-//             if (i == res.data.length - 1) {
-//               window.alert('아이디와 비밀번호가 맞지 않습니다');
-//               history.replace('/login');
-//               return;
-//             }
-//           }
-//         }
-//       })
-//       .catch((err) => {
-//         console.log('loginAPI에서 오류 발생', err);
-//       });
-//   };
-// };
 
-const signupAPI = (username, password, email) => {
-    return function (dispatch, getState, { history }) {
-        axios({
-            method: "POST",
-            url: "http://3.36.72.109/user/signup",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json;charset=UTF-8",
-                "Access-Control-Allow-Origin": "*",
-            },
-            data: {
-                username: username,
-                password: password,
-                email: email,
-            },
-        })
-            .then((res) => {
-                console.log(res); // signup 정보 확인
-                window.alert("축하합니다");
-                history.push("/login");
-            })
-            .catch((err) => {
-                console.log("signupAPI에서 오류발생", err);
-                window.alert("이미 존재하고 있는 아이디입니다");
-                window.location.reload();
-            });
-    };
+const signupAPI = (value) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: 'POST',
+      url: 'http://13.125.174.214/user/signup',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+      },
+      data: {
+        email: value.email,
+        password: value.password,
+        age: value.age,
+      },
+    })
+      .then((res) => {
+        console.log(res); // signup 정보 확인
+        window.alert('축하합니다');
+        history.push('/main');
+      })
+      .catch((err) => {
+        console.log('signupAPI에서 오류발생', err);
+        window.alert(
+         "오류 발생"
+        )
+   
+      });
+  };
 };
 
 const IDCheckAPI = (username) => {
