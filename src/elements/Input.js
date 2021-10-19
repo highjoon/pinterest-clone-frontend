@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const Input = (props) => {
-
     const {
         className,
         width,
@@ -18,9 +17,18 @@ const Input = (props) => {
         _onClick,
         _onChange,
         font_size,
+        _ref,
+        _onKeyPress,
     } = props;
-    const styles = { width, height, margin, padding, border, border_radius,font_size };
-
+    const styles = {
+        width,
+        height,
+        margin,
+        padding,
+        border,
+        border_radius,
+        font_size,
+    };
 
     return (
         <DefaultInput
@@ -32,6 +40,8 @@ const Input = (props) => {
             placeholder={placeholder}
             onClick={_onClick}
             onChange={_onChange}
+            ref={_ref}
+            onKeyPress={_onKeyPress}
             {...styles}
         />
     );

@@ -15,6 +15,7 @@ const CommentContainer = (props) => {
     let [icon_type, setIconType] = useState(faChevronDown);
 
     const comments = useSelector((state) => state.comment.comments);
+    const storedId = props.storedId;
 
     useEffect(() => {
         dispatch(commentActions.getComment());
@@ -53,9 +54,17 @@ const CommentContainer = (props) => {
                 />
             </Flex>
             {is_drop ? (
-                <CommentWrite hidden={false} comments={comments} />
+                <CommentWrite
+                    hidden={false}
+                    comments={comments}
+                    storedId={storedId}
+                />
             ) : (
-                <CommentWrite hidden={true} />
+                <CommentWrite
+                    hidden={true}
+                    comments={comments}
+                    storedId={storedId}
+                />
             )}
         </Flex>
     );

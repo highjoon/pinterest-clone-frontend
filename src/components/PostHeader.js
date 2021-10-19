@@ -21,6 +21,7 @@ const PostHeader = (props) => {
                     font_size="20px"
                     color="black"
                     background_color="transparent"
+                    border="none"
                 >
                     <Icon
                         className=" header__tools hover__bg"
@@ -33,6 +34,7 @@ const PostHeader = (props) => {
                     font_size="20px"
                     color="black"
                     background_color="transparent"
+                    border="none"
                 >
                     <Icon
                         className=" header__tools hover__bg"
@@ -45,6 +47,7 @@ const PostHeader = (props) => {
                     font_size="20px"
                     color="black"
                     background_color="transparent"
+                    border="none"
                 >
                     <Icon className="header__tools" icon={faLink} />
                 </Button>
@@ -73,6 +76,7 @@ const PostHeader = (props) => {
                     color="white"
                     background_color="red"
                     border_radius="24px"
+                    border="none"
                 >
                     저장
                 </Button>

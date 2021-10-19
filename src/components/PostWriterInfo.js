@@ -2,13 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Flex, Image } from "../elements";
 
-const PostWriter = (props) => {
+const PostWriterInfo = (props) => {
     return (
-        <Flex
-            width="100%"
-            margin="20px auto"
-            justify_content="flex-start"
-        >
+        <Flex width="100%" margin="20px auto" justify_content="flex-start">
             <Image
                 type="circle"
                 className="profile"
@@ -38,4 +34,4 @@ const SpanText = styled.span`
     }
 `;
 
-export default PostWriter;
+export default PostWriterInfo;
