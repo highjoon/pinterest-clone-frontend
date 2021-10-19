@@ -94,8 +94,20 @@ const DefaultBtn = styled.button`
     &.submitBtn,
     &.cancleBtn {
         &:hover {
-            background-color: #c0c0c0;
+            background-color: #e2e2e2;
         }
+    }
+
+    &.writable {
+        background-color: #f41330;
+        color: white;
+        &:hover {
+            background-color: #ad081b;
+        }
+    }
+
+    &.unWritable {
+        cursor: default;
     }
 `;
 

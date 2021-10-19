@@ -1,7 +1,9 @@
 import PostImage from "./PostImage";
 import PostDesc from "./PostDesc";
 import PostHeader from "./PostHeader";
-import PostWriter from "./PostWriter";
+import PostWriterInfo from "./PostWriterInfo";
+import Comment from "./Comment";
+import CommentEdit from "./CommentEdit";
 import CommentContainer from "./CommentContainer";
 import CommentWrite from "./CommentWrite";
 import CommentList from "./CommentList";
@@ -12,7 +14,9 @@ export {
     PostImage,
     PostDesc,
     PostHeader,
-    PostWriter,
+    PostWriterInfo,
+    Comment,
+    CommentEdit,
     CommentContainer,
     CommentList,
     CommentWrite,

@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import axios from "axios";
+import { apis } from "../../lib/axios";
 
 const GET_PIN = "GET_PIN";
 
@@ -18,6 +18,18 @@ const initialState = {
     },
 };
 
+const getPinAPI = (id) => {
+    return (dispatch, getState, { history }) => {
+        apis.getPin(id)
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+};
+
 export default handleActions(
     {
         [GET_PIN]: (state, action) =>
@@ -28,6 +40,6 @@ export default handleActions(
     initialState
 );
 
-const actionCreators = { getPin };
+const actionCreators = { getPin, getPinAPI };
 
 export { actionCreators };

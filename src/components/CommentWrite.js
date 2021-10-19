@@ -1,19 +1,49 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Flex, Input, Image, Text, Button } from "../elements";
 import { CommentList } from "./";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CommentWrite = (props) => {
-    const { hidden, comments } = props;
+    const dispatch = useDispatch();
+    const { hidden, comments, storedId } = props;
+
     let [isActive, setIsActive] = useState(false);
     let [isWrite, setIsWrite] = useState(false);
-    const activeInput = (e) => {
-        setIsActive(true);
+    const commentText = useRef();
+
+    const activateInput = (e) => setIsActive(true);
+    const deActivateInput = (e) => {
+        if (window.confirm("정말로 취소하시겠습니까?")) {
+            e.target.parentNode.parentNode.parentNode.children[1].children[2].value =
+                "";
+            setIsActive(false);
+        }
     };
-    const activeSubmit = (e) => {
-        if (e.target.value.length > 0) {
-            setIsWrite(true);
-            console.log(isWrite);
+    const onEnterSubmit = (e) => {
+        if (e.key === "Enter") {
+            submitComment();
+            e.target.value = "";
+        }
+    };
+
+    const activateSubmit = (e) => {
+        let len = e.target.value.length;
+        if (!len) setIsWrite(false);
+        if (len) setIsWrite(true);
+    };
+
+    const submitComment = (e) => {
+        if (commentText.current.value) {
+            const commentObj = {
+                id: Date.now(),
+                content: commentText.current.value,
+                likeNum: 0,
+                user: "테스트유저",
+                pin: Number(storedId),
+            };
+            dispatch(commentActions.addComment(commentObj));
+            commentText.current.value = "";
         }
     };
 
@@ -24,7 +54,11 @@ const CommentWrite = (props) => {
             flex_wrap="wrap"
             justify_content="flex-start"
         >
-            <CommentList hidden={hidden} comments={comments} />
+            <CommentList
+                hidden={hidden}
+                comments={comments}
+                storedId={storedId}
+            />
             <Flex>
                 <Text
                     width="100%"
@@ -54,8 +88,10 @@ const CommentWrite = (props) => {
                     border="1px solid #ddd"
                     border_radius="26px"
                     placeholder="댓글 추가"
-                    _onClick={activeInput}
-                    _onChange={activeSubmit}
+                    _onClick={activateInput}
+                    _onChange={activateSubmit}
+                    _ref={commentText}
+                    _onKeyPress={onEnterSubmit}
                 />
                 {isActive ? (
                     <Flex
@@ -66,31 +102,70 @@ const CommentWrite = (props) => {
                         margin="10px auto"
                         className="btnContainer"
                     >
-                        <Button
-                            className="submitBtn"
-                            width="60px"
-                            height="40px"
-                            border_radius="26px"
-                            background_color="#E2E2E2"
-                            color="#767676"
-                            font_size="14px"
-                            font_weight="700"
-                        >
-                            완료
-                        </Button>
-                        <Button
-                            className="cancleBtn"
-                            width="60px"
-                            height="40px"
-                            border_radius="26px"
-                            background_color="#E2E2E2"
-                            color="black"
-                            font_size="14px"
-                            font_weight="700"
-                            margin="auto 8px auto auto"
-                        >
-                            취소
-                        </Button>
+                        {isWrite ? (
+                            <>
+                                <Button
+                                    className="submitBtn writable"
+                                    width="60px"
+                                    height="40px"
+                                    border="none"
+                                    border_radius="26px"
+                                    background_color="#E2E2E2"
+                                    color="#767676"
+                                    font_size="14px"
+                                    font_weight="700"
+                                    _onClick={submitComment}
+                                >
+                                    완료
+                                </Button>
+                                <Button
+                                    className="cancleBtn"
+                                    width="60px"
+                                    height="40px"
+                                    border="none"
+                                    border_radius="26px"
+                                    background_color="#E2E2E2"
+                                    color="black"
+                                    font_size="14px"
+                                    font_weight="700"
+                                    margin="auto 8px auto auto"
+                                    _onClick={deActivateInput}
+                                >
+                                    취소
+                                </Button>
+                            </>
+                        ) : (
+                            <>
+                                <Button
+                                    className="submitBtn unWritable"
+                                    width="60px"
+                                    height="40px"
+                                    border="none"
+                                    border_radius="26px"
+                                    background_color="#E2E2E2"
+                                    color="#767676"
+                                    font_size="14px"
+                                    font_weight="700"
+                                >
+                                    완료
+                                </Button>
+                                <Button
+                                    className="cancleBtn"
+                                    width="60px"
+                                    height="40px"
+                                    border="none"
+                                    border_radius="26px"
+                                    background_color="#E2E2E2"
+                                    color="black"
+                                    font_size="14px"
+                                    font_weight="700"
+                                    margin="auto 8px auto auto"
+                                    _onClick={deActivateInput}
+                                >
+                                    취소
+                                </Button>
+                            </>
+                        )}
                     </Flex>
                 ) : (
                     ""

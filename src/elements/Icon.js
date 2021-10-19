@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Icon = (props) => {
     const { className, id, icon, _onClick, children } = props;
     return (
-        <IconContainer>
+        <IconContainer className={className}>
             <FontAwesomeIcon
                 className={className}
                 icon={icon}
@@ -44,7 +44,7 @@ const IconContainer = styled.div`
     &.hover__bg {
         &:hover {
             border-radius: 100%;
-            background-color: #f0f0f0;
+            background-color: #c8c8c8;
         }
     }
 `;

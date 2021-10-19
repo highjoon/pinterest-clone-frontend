@@ -1,18 +1,24 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
     PostImage,
     PostDesc,
     PostHeader,
-    PostWriter,
+    PostWriterInfo,
     CommentContainer,
     PostSaveInfo,
     PostContainer,
 } from "../components";
+import { actionCreators as pinActions } from "../redux/modules/pin";
 
 const PinDetail = (props) => {
+    const dispatch = useDispatch();
     const pinDetail = useSelector((state) => state.pin.pinDetail);
-    const storedId = props.match.params.id;
+    const storedId = Number(props.match.params.id);
+
+    useEffect(() => {
+        dispatch(pinActions.getPinAPI(storedId));
+    }, []);
 
     return (
         <PostContainer
@@ -41,7 +47,7 @@ const PinDetail = (props) => {
                     flex_direction="column"
                     align_items="center"
                 >
-                    <PostWriter />
+                    <PostWriterInfo />
                     <CommentContainer storedId={storedId} />
                 </PostContainer>
                 <PostSaveInfo user={pinDetail.user} board={pinDetail.board} />
