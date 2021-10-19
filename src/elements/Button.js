@@ -2,23 +2,48 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-    const { type, width, height, margin, padding, font_size, color, background_color, size, className, fixed, _onClick, text, children } = props;
+    const {
+        type,
+        width,
+        border_radius,
+        height,
+        margin,
+        padding,
+        font_weight,
+        font_size,
+        color,
+        background_color,
+        size,
+        className,
+        fixed,
+        _onClick,
+        text,
+        text_align,
+        children,
+    } = props;
 
     const styles = {
         width,
         height,
         margin,
         padding,
+        font_weight,
         font_size,
         color,
+        border_radius,
         background_color,
         size,
         fixed,
+        text_align,
     };
 
     if (type === "circle") {
         return (
-            <CircleBtn {...styles} className={className} onClick={_onClick}>
+            <CircleBtn
+                {...styles}
+                className={className}
+                onClick={_onClick}
+            >
                 {text ? text : children}
             </CircleBtn>
         );
@@ -26,7 +51,11 @@ const Button = (props) => {
 
     return (
         <React.Fragment>
-            <DefaultBtn {...styles} className={className} onClick={_onClick}>
+            <DefaultBtn
+                {...styles}
+                className={className}
+                onClick={_onClick}
+            >
                 {text ? text : children}
             </DefaultBtn>
         </React.Fragment>
@@ -49,15 +78,25 @@ Button.defaultProps = {
 const DefaultBtn = styled.button`
     width: ${(props) => props.width};
     height: ${(props) => props.height};
-    margin: ${(props) => props.mg};
-    padding: ${(props) => props.pd};
-    background-color: ${(props) => (props.background_color ? props.background_color : "white")};
+    margin: ${(props) => props.margin};
+    padding: ${(props) => props.padding};
+    background-color: ${(props) =>
+        props.background_color ? props.background_color : "white"};
     color: ${(props) => props.color};
     border: none;
-    border-radius: ${(props) => props.height};
+    border-radius: ${(props) => props.border_radius};
     font-weight: ${(props) => props.font_weight};
     font-size: ${(props) => props.font_size};
-    text-align: center;
+    text-align: ${(props) =>
+        props.text_align ? props.text_align : "center"};
+    cursor: pointer;
+    box-sizing: border-box;
+
+    &.saveBtn {
+        &:hover {
+            background-color: #ad081b;
+        }
+    }
 `;
 
 const CircleBtn = styled.button`
@@ -74,7 +113,10 @@ const CircleBtn = styled.button`
 
     &:hover {
         cursor: pointer;
-        background-color: ${(props) => (props.background_color ? props.background_color : "white")};
+        background-color: ${(props) =>
+            props.background_color
+                ? props.background_color
+                : "white"};
     }
 `;
 

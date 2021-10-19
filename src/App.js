@@ -2,11 +2,16 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configureStore.js";
+
 import Header from "./components/Header";
 import Mainboard from "./components/Mainboard.js";
 import unsplash from "./api/unsplash"
 import LoginHeader from "./components/LoginHeader.js";
 import LoginMainboard from "./components/LoginMainboard.js";
+
+import { PinDetail } from "./pages";
+
+
 function App() {
    
     
@@ -72,6 +77,7 @@ function App() {
 
    
     return (
+        <React.Fragment>
         <ConnectedRouter history={history}>
          <Route path = "/" exact>
          <LoginHeader onSubmit={onSearchSubmit}/>
@@ -83,14 +89,16 @@ function App() {
              <Mainboard pins={pins} />
          </Route>
 
+           <Route path="/detail/:id" component={PinDetail} />
 
         </ConnectedRouter>
            
-        
+        </React.Fragment>
           
            
        
     
+
     );
 }
 
