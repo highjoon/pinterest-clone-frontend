@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import {
     PostImage,
     PostDesc,
@@ -10,6 +11,9 @@ import {
 } from "../components";
 
 const PinDetail = (props) => {
+    const pinDetail = useSelector((state) => state.pin.pinDetail);
+    const storedId = props.match.params.id;
+
     return (
         <PostContainer
             className="PostWrapper"
@@ -20,23 +24,27 @@ const PinDetail = (props) => {
             border_radius="32px"
             box_shadow="0 1px 20px 0 rgb(0 0 0 / 10%)"
         >
-            <PostImage className="PostImageBox" />
+            <PostImage className="PostImageBox" imgURL={pinDetail.imgURL} />
             <PostContainer
                 className="PostDescBox"
                 width="50%"
                 border_radius="0 0 32px 32px"
             >
                 <PostHeader />
-                <PostDesc />
+                <PostDesc
+                    webSite={pinDetail.webSite}
+                    title={pinDetail.title}
+                    desc={pinDetail.desc}
+                />
                 <PostContainer
                     width="90%"
                     flex_direction="column"
                     align_items="center"
                 >
                     <PostWriter />
-                    <CommentContainer />
+                    <CommentContainer storedId={storedId} />
                 </PostContainer>
-                <PostSaveInfo />
+                <PostSaveInfo user={pinDetail.user} board={pinDetail.board} />
             </PostContainer>
         </PostContainer>
     );

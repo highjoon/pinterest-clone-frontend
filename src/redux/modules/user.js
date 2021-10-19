@@ -1,22 +1,28 @@
-import { createAction, handleActions } from 'redux-actions';
-import { produce } from 'immer';
-import axios from 'axios';
-import { setCookie, deleteCookie, getCookie } from '../../shared/Cookie';
+import { createAction, handleActions } from "redux-actions";
+import { produce } from "immer";
+import axios from "axios";
+import {
+    setCookie,
+    deleteCookie,
+    getCookie,
+} from "../../shared/Cookie";
 
-const LOG_IN = 'LOG_IN';
-const LOG_OUT = 'LOG_OUT';
-const LOGIN_CHECK = 'LOGIN_CHECK';
-const GET_USER = 'GET_USER';
-const SET_USER = 'SET_USER';
+const LOG_IN = "LOG_IN";
+const LOG_OUT = "LOG_OUT";
+const LOGIN_CHECK = "LOGIN_CHECK";
+const GET_USER = "GET_USER";
+const SET_USER = "SET_USER";
 
 const logIn = createAction(LOG_IN, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
-const loginCheck = createAction(LOGIN_CHECK, (cookie) => ({ cookie }));
+const loginCheck = createAction(LOGIN_CHECK, (cookie) => ({
+    cookie,
+}));
 const getUser = createAction(GET_USER, (user) => ({ user }));
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const initialState = {
-  user: [],
-  is_login: false,
+    user: [],
+    is_login: false,
 };
 
 const loginAPI = (value) => {
@@ -59,7 +65,6 @@ const loginAPI = (value) => {
   };
 };
 
-
 const signupAPI = (value) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -92,66 +97,64 @@ const signupAPI = (value) => {
 };
 
 const IDCheckAPI = (username) => {
-  return function (dispatch, getState, { history }) {
-    axios({
-      method: 'POST',
-      url: 'http://localhost:3001/user',
-      data: {
-      
-      },
-    })
-      .then((res) => {
-        console.log(res.data);
-        dispatch(getUser(res.data.ok));
-      })
-      .catch((err) => {
-        console.log('IDCheckAPI에서 오류 발생', err);
-      });
-  };
+    return function (dispatch, getState, { history }) {
+        axios({
+            method: "POST",
+            url: "http://localhost:3001/user",
+            data: {},
+        })
+            .then((res) => {
+                console.log(res.data);
+                dispatch(getUser(res.data.ok));
+            })
+            .catch((err) => {
+                console.log("IDCheckAPI에서 오류 발생", err);
+            });
+    };
 };
 
 export default handleActions(
-  {
-    [LOG_IN]: (state, action) =>
-      produce(state, (draft) => {
-        draft.user = action.payload.user;
-        draft.is_login = true;
-      }),
-    [LOG_OUT]: (state, action) =>
-      produce(state, (draft) => {
-        deleteCookie('user_login');
-        localStorage.removeItem('user_name');
-        draft.user = null;
-        draft.is_login = false;
-      }),
-    [LOGIN_CHECK]: (state, action) =>
-      produce(state, (draft) => {
-        draft.is_login = action.payload.cookie;
-      }),
-    [GET_USER]: (state, action) =>
-      produce(state, (draft) => {
-        draft.is_exist = action.payload.user;
-        console.log(action.payload);
-        console.log(action.payload.user);
-      }),
-    [SET_USER]: (state, action) =>
-      produce(state, (draft) => {
-        setCookie('is_login', 'success');
-        draft.user = action.payload.user;
-        draft.is_login = true;
-      }),
-  },
-  initialState
+    {
+        [LOG_IN]: (state, action) =>
+            produce(state, (draft) => {
+                draft.user = action.payload.user;
+                draft.is_login = true;
+            }),
+        [LOG_OUT]: (state, action) =>
+            produce(state, (draft) => {
+                deleteCookie("user_login");
+                localStorage.removeItem("user_name");
+                draft.user = null;
+                draft.is_login = false;
+            }),
+        [LOGIN_CHECK]: (state, action) =>
+            produce(state, (draft) => {
+                draft.is_login = action.payload.cookie;
+            }),
+        [GET_USER]: (state, action) =>
+            produce(state, (draft) => {
+                draft.is_exist = action.payload.user;
+                console.log(action.payload);
+                console.log(action.payload.user);
+            }),
+        [SET_USER]: (state, action) =>
+            produce(state, (draft) => {
+                setCookie("is_login", "success");
+                draft.user = action.payload.user;
+                draft.is_login = true;
+            }),
+    },
+    initialState
 );
 
 //action creator export
 const actionCreators = {
-  logIn,
-  logOut,
-  loginCheck,
-  loginAPI,
-  signupAPI,
-  IDCheckAPI,
+    logIn,
+    logOut,
+    loginCheck,
+    loginAPI,
+    signupAPI,
+    IDCheckAPI,
 };
 
 export { actionCreators };

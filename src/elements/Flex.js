@@ -55,15 +55,12 @@ const Flex = (props) => {
 const FlexBox = styled.div`
     display: flex;
     justify-content: ${(props) =>
-        props.justify_content
-            ? `${props.justify_content}`
-            : "center"};
+        props.justify_content ? `${props.justify_content}` : "center"};
     align-items: ${(props) =>
         props.align_items ? `${props.align_items}` : "center"};
     flex-direction: ${(props) =>
         props.flex_direction ? `${props.flex_direction}` : "row"};
-    flex-wrap: ${(props) =>
-        props.flex_wrap ? `${props.flex_wrap};` : "wrap"};
+    flex-wrap: ${(props) => (props.flex_wrap ? `${props.flex_wrap};` : "wrap")};
     width: ${(props) => props.width};
     height: ${(props) => props.height};
     margin: ${(props) => props.margin};
@@ -71,8 +68,7 @@ const FlexBox = styled.div`
     box-sizing: border-box;
     border-radius: ${(props) => props.border_radius};
     background-color: ${(props) => props.background_color};
-    box-shadow: ${(props) =>
-        props.box_shadow ? props.box_shadow : ""};
+    box-shadow: ${(props) => (props.box_shadow ? props.box_shadow : "")};
     gap: ${(props) => (props.gap ? props.gap : "")};
     cursor: ${(props) => (props.cursor ? props.cursor : "")};
     display: ${(props) => (props.display ? props.display : "")};
@@ -87,6 +83,15 @@ const FlexBox = styled.div`
     &.PostDescBox {
         ${({ theme }) => theme.device.desktop} {
             width: 100%;
+        }
+    }
+
+    & .commentWrite {
+        display: flex;
+        .commentWrite:active {
+            .btnContainer {
+                display: none;
+            }
         }
     }
 `;

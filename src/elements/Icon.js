@@ -4,10 +4,16 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Icon = (props) => {
-    const { className, icon, _onClick } = props;
+    const { className, id, icon, _onClick, children } = props;
     return (
-        <IconContainer className={className} onClick={_onClick}>
-            <FontAwesomeIcon icon={icon} />
+        <IconContainer>
+            <FontAwesomeIcon
+                className={className}
+                icon={icon}
+                id={id}
+                onClick={_onClick}
+            />
+            {children}
         </IconContainer>
     );
 };
@@ -15,6 +21,7 @@ const Icon = (props) => {
 const IconContainer = styled.div`
     text-align: center;
     width: 20px;
+    cursor: pointer;
 
     &.header__tools {
         width: 48px;
