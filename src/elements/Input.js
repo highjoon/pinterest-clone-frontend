@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Input = (props) => {
+
     const {
         className,
         width,
@@ -18,6 +19,7 @@ const Input = (props) => {
         _onChange,
     } = props;
     const styles = { width, height, margin, padding, border, border_radius };
+
 
     return (
         <DefaultInput

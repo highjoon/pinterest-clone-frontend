@@ -5,7 +5,6 @@ import { ThemeProvider } from "styled-components";
 import store from "./redux/configureStore";
 import theme from "./elements/theme";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
     <Provider store={store}>
@@ -16,4 +15,3 @@ ReactDOM.render(
     document.getElementById("root")
 );
 
-reportWebVitals();
