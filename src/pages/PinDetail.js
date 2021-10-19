@@ -12,8 +12,12 @@ import {
 
 const PinDetail = (props) => {
     const pinDetail = useSelector((state) => state.pin.pinDetail);
+    const zapPin = useSelector((state) =>state.pin.pin)
     const storedId = props.match.params.id;
 
+     
+
+     
     return (
         <PostContainer
             className="PostWrapper"
@@ -24,7 +28,7 @@ const PinDetail = (props) => {
             border_radius="32px"
             box_shadow="0 1px 20px 0 rgb(0 0 0 / 10%)"
         >
-            <PostImage className="PostImageBox" imgURL={pinDetail.imgURL} />
+            <PostImage className="PostImageBox" imgURL={zapPin[storedId]} />
             <PostContainer
                 className="PostDescBox"
                 width="50%"
