@@ -2,18 +2,40 @@ import React from "react";
 import styled from "styled-components";
 
 const Image = (props) => {
-    const { type, children } = props;
-    const styles = {};
+    const {
+        className,
+        width,
+        height,
+        type,
+        src,
+        border,
+        border_radius,
+        cursor,
+        children,
+    } = props;
+    const styles = { width, height, border, border_radius, cursor };
 
     if (type === "circle") {
-        return <CircleImg {...styles}>{children}</CircleImg>;
+        return (
+            <CircleImg {...styles} className={className} src={src}>
+                {children}
+            </CircleImg>
+        );
     }
 
     if (type === "rect") {
-        return <RectImg {...styles}>{children}</RectImg>;
+        return (
+            <RectImg {...styles} className={className} src={src}>
+                {children}
+            </RectImg>
+        );
     }
 
-    return <DefaultImg {...styles}>{children}</DefaultImg>;
+    return (
+        <DefaultImg {...styles} className={className} src={src}>
+            {children}
+        </DefaultImg>
+    );
 };
 
 Image.defaultProps = {
@@ -21,8 +43,20 @@ Image.defaultProps = {
     _onClick: () => {},
 };
 
-const DefaultImg = styled.image``;
-const CircleImg = styled.image``;
-const RectImg = styled.image``;
+const DefaultImg = styled.img`
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
+    border: ${(props) => props.border};
+    border-radius: ${(props) => props.border_radius};
+    cursor: ${(props) => (props.cursor ? "pointer" : "")};
+`;
+const CircleImg = styled.img`
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
+    border: ${(props) => props.border};
+    border-radius: 100%;
+    cursor: ${(props) => (props.cursor ? "pointer" : "")};
+`;
+const RectImg = styled.img``;
 
 export default Image;
