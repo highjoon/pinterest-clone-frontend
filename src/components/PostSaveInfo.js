@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { Flex, Image, Text } from "../elements";
 
 const PostSaveInfo = (props) => {
-    const name = "TestName";
-    const board = "TestBoard";
+    const { user, board } = props;
     return (
         <Flex
             width="90%"
@@ -30,7 +29,7 @@ const PostSaveInfo = (props) => {
                 />
                 <Text margin="0px auto 0px 10px" font_size="14px">
                     <SpanText className="bold">
-                        <PageLink>{`${name}`}</PageLink>
+                        <PageLink>{`${user}`}</PageLink>
                     </SpanText>
                     님이{" "}
                     <SpanText className="bold">

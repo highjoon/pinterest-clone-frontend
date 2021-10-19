@@ -1,11 +1,9 @@
 import React from "react";
-import styled from "styled-components";
-import { Button, Flex, Text, Icon } from "../elements";
+import { Button, Flex, Icon } from "../elements";
 import {
     faEllipsisH,
     faUpload,
     faLink,
-    faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 const PostHeader = (props) => {

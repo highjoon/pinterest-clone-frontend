@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Flex, Text } from "../elements";
 
 const PostDesc = (props) => {
+    const { webSite, title, desc } = props;
     return (
         <Flex
             width="90%"
@@ -16,12 +17,11 @@ const PostDesc = (props) => {
                 font_weight="400"
                 text_align="left"
             >
-                <PageLink href="#">logicre.net</PageLink>
+                <PageLink href={webSite}>{webSite}</PageLink>
             </Text>
             <PostTitle>
-                <PageLink href="#" className="title">
-                    29 DIY Winter Wedding Favors for Guests to Cozy Up
-                    To
+                <PageLink href={webSite} className="title">
+                    {title}
                 </PageLink>
             </PostTitle>
             <Text
@@ -30,8 +30,7 @@ const PostDesc = (props) => {
                 font_weight="400"
                 text_align="left"
             >
-                When guests are done cozying up, let them take home
-                some of your wedding magic with these DIY favors.
+                {desc}
             </Text>
         </Flex>
     );

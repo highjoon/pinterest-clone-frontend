@@ -39,11 +39,7 @@ const Button = (props) => {
 
     if (type === "circle") {
         return (
-            <CircleBtn
-                {...styles}
-                className={className}
-                onClick={_onClick}
-            >
+            <CircleBtn {...styles} className={className} onClick={_onClick}>
                 {text ? text : children}
             </CircleBtn>
         );
@@ -51,11 +47,7 @@ const Button = (props) => {
 
     return (
         <React.Fragment>
-            <DefaultBtn
-                {...styles}
-                className={className}
-                onClick={_onClick}
-            >
+            <DefaultBtn {...styles} className={className} onClick={_onClick}>
                 {text ? text : children}
             </DefaultBtn>
         </React.Fragment>
@@ -87,14 +79,20 @@ const DefaultBtn = styled.button`
     border-radius: ${(props) => props.border_radius};
     font-weight: ${(props) => props.font_weight};
     font-size: ${(props) => props.font_size};
-    text-align: ${(props) =>
-        props.text_align ? props.text_align : "center"};
+    text-align: ${(props) => (props.text_align ? props.text_align : "center")};
     cursor: pointer;
     box-sizing: border-box;
 
     &.saveBtn {
         &:hover {
             background-color: #ad081b;
+        }
+    }
+
+    &.submitBtn,
+    &.cancleBtn {
+        &:hover {
+            background-color: #c0c0c0;
         }
     }
 `;
@@ -114,9 +112,7 @@ const CircleBtn = styled.button`
     &:hover {
         cursor: pointer;
         background-color: ${(props) =>
-            props.background_color
-                ? props.background_color
-                : "white"};
+            props.background_color ? props.background_color : "white"};
     }
 `;
 

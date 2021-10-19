@@ -1,21 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Flex, Text, Icon } from "../elements";
 import {
     faChevronDown,
     faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { CommentWrite } from "./";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CommentContainer = (props) => {
-    const count = 0;
+    const dispatch = useDispatch();
+
     let [is_drop, setIsDrop] = useState(true);
     let [icon_type, setIconType] = useState(faChevronDown);
 
+    const comments = useSelector((state) => state.comment.comments);
+
+    useEffect(() => {
+        dispatch(commentActions.getComment());
+    }, []);
+
     const dropComment = () => {
         is_drop ? setIsDrop(false) : setIsDrop(true);
-        is_drop
-            ? setIconType(faChevronRight)
-            : setIconType(faChevronDown);
+        is_drop ? setIconType(faChevronRight) : setIconType(faChevronDown);
     };
 
     return (
@@ -36,7 +43,7 @@ const CommentContainer = (props) => {
                     background_color="transparent"
                     color="black"
                 >
-                    댓글 {count ? `${count}개` : ""}
+                    댓글 {comments.length ? `${comments.length}개` : ""}
                 </Text>
                 <Icon
                     className=" 
@@ -46,7 +53,7 @@ const CommentContainer = (props) => {
                 />
             </Flex>
             {is_drop ? (
-                <CommentWrite hidden={false} />
+                <CommentWrite hidden={false} comments={comments} />
             ) : (
                 <CommentWrite hidden={true} />
             )}
