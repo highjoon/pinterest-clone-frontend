@@ -17,8 +17,9 @@ const Input = (props) => {
         placeholder,
         _onClick,
         _onChange,
+        font_size,
     } = props;
-    const styles = { width, height, margin, padding, border, border_radius };
+    const styles = { width, height, margin, padding, border, border_radius,font_size };
 
 
     return (
