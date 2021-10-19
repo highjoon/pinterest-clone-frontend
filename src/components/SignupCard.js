@@ -9,17 +9,17 @@ import LoginForm from './LoginForm';
 import { Pinterest } from '@material-ui/icons'
 import { IconButton } from '@material-ui/core'
 const SignupCard = () => {
-	const [loginMode, setLoginMode] = useState(false);
+	const [loginMode, setLoginMode] = useState(true);
 	const dispatch = useDispatch();
 	const formik = useFormik({
 		initialValues: {
-			userName: '',
+			email: '',
 			password: '',
-			checkPassword: '',
+			age: '',
 		},
 
 		validationSchema: Yup.object({
-			userName: Yup.string()
+			email: Yup.string()
 				.email('올바른 이메일 주소가 아닙니다.')
 				.required('빠뜨린 부분이 있네요! 잊지 말고 이메일을 추가하세요.'),
 			password: Yup.string()
@@ -28,14 +28,14 @@ const SignupCard = () => {
 				.required('패스워드를 정확하게 입력해주세요.'),
 			age: Yup.string()
 				
-				.matches(/[a-zA-Z]/, '숫자로 입력해 주시길 바랍니다')
+				.matches(/[0-9]/, '숫자로 입력해 주시길 바랍니다')
 				.required('나이를 숫자로 한번 더 입력해주세요.')
 				
 		}),
 
 		onSubmit: (values) => {
 			console.log(values);
-			dispatch(userActions.__signup(values));
+			dispatch(userActions.signupAPI(values));
 			setLoginMode(true);
 		},
 	});
@@ -53,7 +53,7 @@ const SignupCard = () => {
 			<Text font_size='2.2rem' margin='10px 0 10px 0'>
 			     합니다.
 			</Text>
-			<Text size='1.6rem' color='var(--primary-gray)' margin="0 0 30px 0">
+			<Text size='1.6rem'  margin="0 0 30px 0">
 				시도해 볼 만한 새로운 아이디어 찾기
 			</Text>
 			{loginMode ? (
@@ -65,15 +65,18 @@ const SignupCard = () => {
 							margin='5px 0'
 							width='268px'
 							height='40px'
-							name='userName'
+							name='email'
 							type='text'
-							_onChange={formik.handleChange}
-							value={formik.values.userName}
+							_onChange={
+							
+								formik.handleChange
+								}
+							value={formik.values.email}
 							placeholder='이메일'
 						/>
-						{formik.touched.userName && formik.errors.userName ? (
+						{formik.touched.email && formik.errors.email ? (
 							<Text margin='5px 0' color='#e60023'>
-								{formik.errors.userName}
+								{formik.errors.email}
 							</Text>
 						) : null}
 					

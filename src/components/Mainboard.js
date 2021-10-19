@@ -1,15 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import Pin from './Pin'
+import { useHistory } from 'react-router'
 const Mainboard = (props) => {
     let {pins} = props;
+    let history = useHistory()
     return (
         <Wrapper>
             <Container>
                {
                    pins.map((pin,index)=> {
                        let {urls} = pin;
-                      return  <Pin key={index} urls={urls} />
+                      return (
+                          <div onClick={()=> {
+                            history.push(`/detail/${index}`)
+                        }}><Pin key={index} urls={urls}  />
+                              </div>
+                      ) 
                    })
                }
             </Container>
