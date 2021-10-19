@@ -42,8 +42,8 @@ const LoginMainboard = (props) => {
             viewLogin&&<Drapper>
             <FlexBox
                 style={{
-                    transform: `translateY(100px)`,
-                    opacity: viewLogin && 0.5
+                    transform: `translateY(40px)`,
+                   
                 }}
             >
                 <div
@@ -64,7 +64,7 @@ const LoginMainboard = (props) => {
             </FlexBox>
             <Back
                 style={{
-                    opacity: 0.5,
+                
                 }}
             />
         </Drapper>

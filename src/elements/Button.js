@@ -6,6 +6,7 @@ const Button = (props) => {
         type,
         width,
         border_radius,
+        border,
         height,
         margin,
         padding,
@@ -35,6 +36,7 @@ const Button = (props) => {
         size,
         fixed,
         text_align,
+        border,
     };
 
     if (type === "circle") {
@@ -83,7 +85,7 @@ const DefaultBtn = styled.button`
     background-color: ${(props) =>
         props.background_color ? props.background_color : "white"};
     color: ${(props) => props.color};
-    border: none;
+    border: ${(props) => props.border};
     border-radius: ${(props) => props.border_radius};
     font-weight: ${(props) => props.font_weight};
     font-size: ${(props) => props.font_size};

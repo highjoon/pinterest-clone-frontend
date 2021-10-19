@@ -14,6 +14,8 @@ const Text = (props) => {
         border_radius,
         children,
         _onClick,
+        cursor,
+        color,
     } = props;
     const styles = {
         width,
@@ -25,6 +27,8 @@ const Text = (props) => {
         line_height,
         border,
         border_radius,
+        cursor,
+        color,
     };
     return (
         <DefaultText {...styles} onClick={_onClick}>
@@ -50,6 +54,7 @@ const DefaultText = styled.p`
         props.border_radius ? props.border_radius : ""};
     cursor: ${(props) => (props.cursor ? props.cursor : "")};
     outline: none;
+    color: ${(props) => (props.color ? props.color : "")};
 `;
 
 export default Text;
