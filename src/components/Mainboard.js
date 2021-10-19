@@ -20,7 +20,8 @@ const Mainboard = (props) => {
                    })
                }
             </Container>
-
+         <FloatButton >?</FloatButton>
+         <GloatButton onClick={()=> {history.push('/addpin')}}>+</GloatButton>
         </Wrapper>
     )
 }
@@ -50,3 +51,42 @@ max-width: 1260px;
 
 `
 
+const FloatButton = styled.button`
+  width: 50px;
+  height: 50px;
+  
+  color: #ffffff;
+  box-sizing: border-box;
+  font-size: 36px;
+  font-weight: 800;
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  text-align: center;
+  vertical-align: middle;
+  border: none;
+  border-radius: 50px;
+  &:hover{
+      cursor:pointer;
+  }
+`;
+const GloatButton = styled.button`
+  width: 50px;
+  height: 50px;
+ 
+  background-size:cover;
+  color: #ffffff;
+  box-sizing: border-box;
+  font-size: 36px;
+  font-weight: 800;
+  position: fixed;
+  bottom:110px;
+  right: 30px;
+  text-align: center;
+  vertical-align: middle;
+  border: none;
+  border-radius: 50px;
+  &:hover{
+      cursor:pointer;
+  }
+`;

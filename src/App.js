@@ -10,6 +10,7 @@ import LoginHeader from "./components/LoginHeader.js";
 import LoginMainboard from "./components/LoginMainboard.js";
 import { actionCreators as PinCreators } from "./redux/modules/pin.js";
 import { PinDetail } from "./pages";
+import AddPin from "./pages/AddPin.js";
 
 function App() {
     const dispatch = useDispatch();
@@ -82,6 +83,7 @@ function App() {
                     <Mainboard pins={pins} />
                 </Route>
                 <Route path="/detail/:id" component={PinDetail}  />
+                <Route path="/addpin" exact component={AddPin} />
             </ConnectedRouter>
         </React.Fragment>
     );
