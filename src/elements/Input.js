@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const Input = (props) => {
-    const { type, value, name, placeholder, _onClick, _onChange } = props;
-    const styles = {};
+    const { type, value, name, placeholder, _onClick, _onChange,margin,width } = props;
+    const styles = {
+        margin:margin,
+        width:width,
+    };
 
     return <DefaultInput type={type} value={value} name={name} placeholder={placeholder} onClick={_onClick} onChange={_onChange} {...styles} />;
 };
