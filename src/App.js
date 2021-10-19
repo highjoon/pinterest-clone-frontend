@@ -2,16 +2,18 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configureStore.js";
-
+import { useDispatch } from "react-redux";
 import Header from "./components/Header";
 import Mainboard from "./components/Mainboard.js";
 import unsplash from "./api/unsplash";
 import LoginHeader from "./components/LoginHeader.js";
 import LoginMainboard from "./components/LoginMainboard.js";
-
+import { actionCreators as PinCreators } from "./redux/modules/pin.js";
 import { PinDetail } from "./pages";
+import AddPin from "./pages/AddPin.js";
 
 function App() {
+    const dispatch = useDispatch();
     const scrollToBottom = () =>
         window.scrollTo({
             top: document.documentElement.scrollHeight,
@@ -44,7 +46,7 @@ function App() {
         let promises = [];
         let pinData = [];
 
-        let pins = ["ocean", "Tokyo", "city", "food", "people"];
+        let pins = ["ocean", "Tokyo", "city"];
 
         pins.forEach((pinTerm) => {
             promises.push(
@@ -61,6 +63,8 @@ function App() {
         });
         Promise.all(promises).then(() => {
             setNewpins(pinData);
+            dispatch(PinCreators.getZapPin(pinData))
+            console.log(pinData)
         });
     };
     React.useEffect(() => {
@@ -78,7 +82,8 @@ function App() {
                     <Header onSubmit={onSearchSubmit} />
                     <Mainboard pins={pins} />
                 </Route>
-                <Route path="/detail/:id" component={PinDetail} />
+                <Route path="/detail/:id" component={PinDetail}  />
+                <Route path="/addpin" exact component={AddPin} />
             </ConnectedRouter>
         </React.Fragment>
     );

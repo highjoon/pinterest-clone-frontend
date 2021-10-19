@@ -4,8 +4,10 @@ import { apis } from "../../lib/axios";
 
 const GET_PIN = "GET_PIN";
 
-const getPin = createAction(GET_PIN, (pinDetail) => ({ pinDetail }));
+const GET_ZAPPIN = "GET_ZAPPIN";
 
+const getPin = createAction(GET_PIN, (pinDetail) => ({ pinDetail }));
+const getZapPin = createAction(GET_ZAPPIN,(pin)=>({pin}))
 const initialState = {
     pinDetail: {
         id: 1,
@@ -16,6 +18,7 @@ const initialState = {
         user: "테스트 유저",
         board: 1,
     },
+    pin: [],
 };
 
 const getPinAPI = (id) => {
@@ -36,10 +39,13 @@ export default handleActions(
             produce(state, (draft) => {
                 draft.pinDetail = action.payload.pinDetail;
             }),
+            [GET_ZAPPIN]: (state, action) =>
+            produce(state, (draft) => {
+                draft.pin = action.payload.pin;
+            }),
     },
     initialState
 );
 
-const actionCreators = { getPin, getPinAPI };
-
+const actionCreators = { getPin, getPinAPI, getZapPin };
 export { actionCreators };

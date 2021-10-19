@@ -9,7 +9,7 @@ import LoginForm from './LoginForm';
 import { Pinterest } from '@material-ui/icons'
 import { IconButton } from '@material-ui/core'
 const SignupCard = () => {
-	const [loginMode, setLoginMode] = useState(true);
+	const [loginMode, setLoginMode] = useState(false);
 	const dispatch = useDispatch();
 	const formik = useFormik({
 		initialValues: {
