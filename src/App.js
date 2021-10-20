@@ -30,7 +30,6 @@ function App() {
         });
     };
     const onSearchSubmit = (term) => {
-        console.log("on search submit", term);
         getImages(term).then((res) => {
             let results = res.data.results;
 
@@ -63,8 +62,7 @@ function App() {
         });
         Promise.all(promises).then(() => {
             setNewpins(pinData);
-            dispatch(PinCreators.getZapPin(pinData))
-            console.log(pinData)
+            dispatch(PinCreators.getZapPin(pinData));
         });
     };
     React.useEffect(() => {
@@ -82,7 +80,7 @@ function App() {
                     <Header onSubmit={onSearchSubmit} />
                     <Mainboard pins={pins} />
                 </Route>
-                <Route path="/detail/:id" component={PinDetail}  />
+                <Route path="/detail/:id" component={PinDetail} />
                 <Route path="/addpin" exact component={AddPin} />
             </ConnectedRouter>
         </React.Fragment>

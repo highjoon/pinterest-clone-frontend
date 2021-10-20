@@ -20,6 +20,7 @@ const Button = (props) => {
         _onClick,
         text,
         text_align,
+        outline,
         children,
     } = props;
 
@@ -37,6 +38,7 @@ const Button = (props) => {
         fixed,
         text_align,
         border,
+        outline,
     };
 
     if (type === "circle") {
@@ -66,6 +68,7 @@ Button.defaultProps = {
     backgroundColor: "black",
     cursor: "pointer",
     size: 10,
+    outline: "none",
     _onClick: () => {},
 };
 
@@ -84,6 +87,10 @@ const DefaultBtn = styled.button`
     text-align: ${(props) => (props.text_align ? props.text_align : "center")};
     cursor: pointer;
     box-sizing: border-box;
+
+    &:focus {
+        outline: none;
+    }
 
     &.saveBtn {
         &:hover {

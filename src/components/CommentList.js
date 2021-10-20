@@ -4,8 +4,8 @@ import { Comment } from "./";
 
 const CommentList = (props) => {
     const { hidden, comments, storedId } = props;
-
-    if (comments) {
+    console.log(comments);
+    if (comments.length) {
         return (
             <Flex
                 width="100%"
@@ -15,6 +15,7 @@ const CommentList = (props) => {
                 hidden={hidden}
             >
                 {comments.map((comment, idx) => {
+                    console.log(comment);
                     return (
                         <Comment
                             comment={comment}

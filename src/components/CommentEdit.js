@@ -17,11 +17,8 @@ const CommentEdit = (props) => {
         const newCommentObj = {
             id: id,
             content: newComment.current.value,
-            likeNum: 0,
-            user: "테스트유저",
-            pin: Number(storedId),
         };
-        dispatch(commentActions.editComment(newCommentObj, id));
+        dispatch(commentActions.editCommentAPI(id, newCommentObj));
         _deActivateEdit();
     };
 

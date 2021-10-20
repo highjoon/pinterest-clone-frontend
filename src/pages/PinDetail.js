@@ -14,13 +14,12 @@ import { actionCreators as pinActions } from "../redux/modules/pin";
 const PinDetail = (props) => {
     const dispatch = useDispatch();
     const pinDetail = useSelector((state) => state.pin.pinDetail);
+    // const zapPin = useSelector((state) => state.pin.pin);
     const storedId = Number(props.match.params.id);
-  
+
     useEffect(() => {
         dispatch(pinActions.getPinAPI(storedId));
     }, []);
-    const zapPin = useSelector((state) =>state.pin.pin)
-    const storedId = props.match.params.id;
 
     return (
         <PostContainer
@@ -32,7 +31,8 @@ const PinDetail = (props) => {
             border_radius="32px"
             box_shadow="0 1px 20px 0 rgb(0 0 0 / 10%)"
         >
-            <PostImage className="PostImageBox" imgURL={zapPin[storedId]} />
+            {/* <PostImage className="PostImageBox" imgURL={zapPin[storedId]} /> */}
+            <PostImage className="PostImageBox" imgURL={pinDetail.imgURL} />
             <PostContainer
                 className="PostDescBox"
                 width="50%"
