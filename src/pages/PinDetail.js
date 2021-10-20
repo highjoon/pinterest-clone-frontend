@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-    PostImage,
-    PostDesc,
-    PostHeader,
-    PostWriterInfo,
+    PinImage,
+    PinDesc,
+    PinHeader,
+    PinWriterInfo,
+    PinSaveInfo,
+    PinContainer,
     CommentContainer,
-    PostSaveInfo,
-    PostContainer,
 } from "../components";
 import { actionCreators as pinActions } from "../redux/modules/pin";
 
@@ -22,7 +22,7 @@ const PinDetail = (props) => {
     }, []);
 
     return (
-        <PostContainer
+        <PinContainer
             className="PostWrapper"
             justify_content="initial"
             align_items="start"
@@ -32,29 +32,29 @@ const PinDetail = (props) => {
             box_shadow="0 1px 20px 0 rgb(0 0 0 / 10%)"
         >
             {/* <PostImage className="PostImageBox" imgURL={zapPin[storedId]} /> */}
-            <PostImage className="PostImageBox" imgURL={pinDetail.imgURL} />
-            <PostContainer
+            <PinImage className="PostImageBox" imgURL={pinDetail.imgURL} />
+            <PinContainer
                 className="PostDescBox"
                 width="50%"
                 border_radius="0 0 32px 32px"
             >
-                <PostHeader />
-                <PostDesc
+                <PinHeader />
+                <PinDesc
                     webSite={pinDetail.webSite}
                     title={pinDetail.title}
                     desc={pinDetail.desc}
                 />
-                <PostContainer
+                <PinContainer
                     width="90%"
                     flex_direction="column"
                     align_items="center"
                 >
-                    <PostWriterInfo />
+                    <PinWriterInfo />
                     <CommentContainer storedId={storedId} />
-                </PostContainer>
-                <PostSaveInfo user={pinDetail.user} board={pinDetail.board} />
-            </PostContainer>
-        </PostContainer>
+                </PinContainer>
+                <PinSaveInfo user={pinDetail.user} board={pinDetail.board} />
+            </PinContainer>
+        </PinContainer>
     );
 };
 

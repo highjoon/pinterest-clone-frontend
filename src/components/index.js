@@ -1,25 +1,25 @@
-import PostImage from "./PostImage";
-import PostDesc from "./PostDesc";
-import PostHeader from "./PostHeader";
-import PostWriterInfo from "./PostWriterInfo";
+import PinImage from "./PinImage";
+import PinDesc from "./PinDesc";
+import PinHeader from "./PinHeader";
+import PinWriterInfo from "./PinWriterInfo";
+import PinSaveInfo from "./PinSaveInfo";
+import PinContainer from "./PinContainer";
 import Comment from "./Comment";
 import CommentEdit from "./CommentEdit";
 import CommentContainer from "./CommentContainer";
 import CommentWrite from "./CommentWrite";
 import CommentList from "./CommentList";
-import PostSaveInfo from "./PostSaveInfo";
-import PostContainer from "./PostContainer";
 
 export {
-    PostImage,
-    PostDesc,
-    PostHeader,
-    PostWriterInfo,
+    PinImage,
+    PinDesc,
+    PinHeader,
+    PinWriterInfo,
+    PinSaveInfo,
+    PinContainer,
     Comment,
     CommentEdit,
     CommentContainer,
     CommentList,
     CommentWrite,
-    PostSaveInfo,
-    PostContainer,
 };

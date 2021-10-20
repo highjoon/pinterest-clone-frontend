@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Flex, Input, Image, Text, Button } from "../elements";
 import { CommentList } from "./";
@@ -38,15 +38,10 @@ const CommentWrite = (props) => {
                 content: commentText.current.value,
                 pin: Number(storedId),
             };
-            // console.log(commentObj);
             dispatch(commentActions.addCommentAPI(commentObj));
             commentText.current.value = "";
         }
     };
-
-    // useEffect(() => {
-    //     dispatch(commentActions.getCommentAPI())
-    // })
 
     return (
         <Flex

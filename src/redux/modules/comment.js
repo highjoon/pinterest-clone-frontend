@@ -9,8 +9,9 @@ const DELETE_COMMENT = "DELETE_COMMENT";
 const TOGGLE_LIKE = "TOGGLE_LIKE";
 
 const getComment = createAction(GET_COMMENTS, (comments) => ({ comments }));
-const addComment = createAction(ADD_COMMENT, (comment) => ({
-    comment,
+const addComment = createAction(ADD_COMMENT, (comments, userName) => ({
+    comments,
+    userName,
 }));
 const editComment = createAction(EDIT_COMMENT, (comment, commentId) => ({
     comment,
@@ -57,8 +58,9 @@ const addCommentAPI = (comments) => {
     return (dispatch, getState, { history }) => {
         apis.addComment(comments)
             .then((res) => {
-                dispatch(addComment(comments));
-                window.alert("추가 완료!");
+                const userName = res.data;
+                console.log(userName);
+                dispatch(addComment(comments, userName));
             })
             .catch((err) => {
                 console.log(err);
@@ -70,7 +72,7 @@ const editCommentAPI = (id, comments) => {
     return (dispatch, getState, { history }) => {
         apis.editComment(id, comments)
             .then((res) => {
-                dispatch(editComment(id, comments));
+                dispatch(editComment(comments, id));
                 window.alert("수정 완료!");
             })
             .catch((err) => {
@@ -111,12 +113,15 @@ export default handleActions(
             }),
         [ADD_COMMENT]: (state, action) =>
             produce(state, (draft) => {
-                draft.comments.push(action.payload.comments);
+                draft.comments.push({
+                    ...action.payload.comments,
+                    ...action.payload.userName,
+                });
             }),
         [EDIT_COMMENT]: (state, action) =>
             produce(state, (draft) => {
                 let commentIdx = draft.comments.findIndex(
-                    (comment) => comment.id === action.payload.commentId
+                    (comment) => comment.id == action.payload.commentId
                 );
                 draft.comments[commentIdx] = {
                     ...draft.comments[commentIdx],
