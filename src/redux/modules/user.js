@@ -12,17 +12,22 @@ const LOG_OUT = "LOG_OUT";
 const LOGIN_CHECK = "LOGIN_CHECK";
 const GET_USER = "GET_USER";
 const SET_USER = "SET_USER";
-
+const FIND_USER = "FIND_USER";
+const FIND_LOGIN = "FIND_LOGIN";
 const logIn = createAction(LOG_IN, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const loginCheck = createAction(LOGIN_CHECK, (cookie) => ({
     cookie,
 }));
-const getUser = createAction(GET_USER, (user) => ({ user }));
-const setUser = createAction(SET_USER, (user) => ({ user }));
+
+const findLogin = createAction(FIND_LOGIN, (loginId) => ({loginId}))
+
+const findUser = createAction(FIND_USER, (is_id) => ({is_id}))
 const initialState = {
     user: [],
     is_login: false,
+    is_id: false,
+    loginId: '',
 };
 
 const loginAPI = (value) => {
@@ -65,6 +70,31 @@ const loginAPI = (value) => {
   };
 };
 
+const loginActionAPI = (email) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: 'GET',
+      url: `http://13.125.174.214/user/login/${email}`,
+      data: {
+    
+      },
+    })
+      .then((res) => {
+      
+       dispatch(findUser(true));
+       dispatch(findLogin(email))
+       
+      })
+      .catch((err) => {
+        dispatch(findUser(false));
+       
+      });
+  };
+};
+
+
+
+
 const signupAPI = (value) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -96,22 +126,6 @@ const signupAPI = (value) => {
   };
 };
 
-const IDCheckAPI = (username) => {
-    return function (dispatch, getState, { history }) {
-        axios({
-            method: "POST",
-            url: "http://localhost:3001/user",
-            data: {},
-        })
-            .then((res) => {
-                console.log(res.data);
-                dispatch(getUser(res.data.ok));
-            })
-            .catch((err) => {
-                console.log("IDCheckAPI에서 오류 발생", err);
-            });
-    };
-};
 
 export default handleActions(
     {
@@ -143,6 +157,14 @@ export default handleActions(
                 draft.user = action.payload.user;
                 draft.is_login = true;
             }),
+            [FIND_USER]: (state, action) =>
+            produce(state, (draft) => {
+                draft.is_id = action.payload.is_id
+            }),
+            [FIND_LOGIN] : (state, action) =>
+            produce(state, (draft) => {
+              draft.loginId = action.payload.loginId
+            } )
     },
     initialState
 );
@@ -154,7 +176,10 @@ const actionCreators = {
     loginCheck,
     loginAPI,
     signupAPI,
-    IDCheckAPI,
+    loginActionAPI,
+    findUser,
+    findLogin,
+  
 };
 
 export { actionCreators };

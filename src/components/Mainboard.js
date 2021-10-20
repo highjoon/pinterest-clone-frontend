@@ -1,23 +1,40 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
-import Pin from "./Pin";
+import {useSelector, useDispatch} from "react-redux"
 import { useHistory } from "react-router";
+import {actionCreators as MainActions} from "../redux/modules/main"
 const Mainboard = (props) => {
-    let { pins } = props;
+    
+    const dispatch = useDispatch();
+
+   
+    const mainPins = useSelector((state) => state.main.list)
+    
+    console.log(mainPins)
     let history = useHistory();
+
+    useEffect(() => {
+        dispatch(MainActions.getMainAPI());
+    }, []);
     return (
         <Wrapper>
             <Container>
-                {pins.map((pin, index) => {
-                    let { urls } = pin;
+                {mainPins.map((pin, index) => {
+                    
                     return (
-                        <div
-                            onClick={() => {
-                                history.push(`/detail/${index}`);
+                         <ImageWrapper>
+                    <ImageContainer>
+                    <div onClick={() => {
+                     history.push(`/detail/${pin.id}`);
                             }}
                         >
-                            <Pin key={index} urls={urls} />
+                <img src={pin.imgURL} alt="pin" />
+                
                         </div>
+                       
+               </ImageContainer>
+           </ImageWrapper>
+                       
                     );
                 })}
             </Container>
@@ -91,5 +108,25 @@ const GloatButton = styled.button`
     border-radius: 50px;
     &:hover {
         cursor: pointer;
+    }
+`;
+const ImageWrapper = styled.div`
+    display: inline-flex;
+    padding: 8px;
+`;
+
+const ImageContainer = styled.div`
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 236px;
+
+    img {
+        display: flex;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 16px;
+        object-fit: cover;
     }
 `;

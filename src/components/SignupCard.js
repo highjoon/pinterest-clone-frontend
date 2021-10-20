@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Flex, Text, Button, Input } from "../elements";
-import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { Flex, Text, Button, Input } from "../elements";
+import { useDispatch, useSelector } from "react-redux";
+
 import LoginForm from "./LoginForm";
 import { Pinterest } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 const SignupCard = () => {
     const [loginMode, setLoginMode] = useState(true);
     const dispatch = useDispatch();
+    const idCheck = useSelector(state => state.user.is_id)
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -26,7 +28,7 @@ const SignupCard = () => {
                 ),
             password: Yup.string()
                 .min(8, "비밀번호가 너무 짧네요! 8자 이상 입력하세요.")
-                .matches(/[a-zA-Z]/, "더 강력한 비밀번호를 사용하세요.")
+                .matches(/[a-zA-Z0-9]/, "더 강력한 비밀번호를 사용하세요.")
                 .required("패스워드를 정확하게 입력해주세요."),
             age: Yup.string()
 
@@ -57,7 +59,7 @@ const SignupCard = () => {
             <Text size="1.6rem" margin="0 0 30px 0">
                 시도해 볼 만한 새로운 아이디어 찾기
             </Text>
-            {loginMode ? (
+            {idCheck? (
                 <LoginForm />
             ) : (
                 <form onSubmit={formik.handleSubmit}>
@@ -71,6 +73,7 @@ const SignupCard = () => {
                             _onChange={formik.handleChange}
                             value={formik.values.email}
                             placeholder="이메일"
+                            _onBlur={(e)=>{dispatch(userActions.loginActionAPI(e.target.value))}}
                         />
                         {formik.touched.email && formik.errors.email ? (
                             <Text margin="5px 0" color="#e60023">
@@ -85,6 +88,7 @@ const SignupCard = () => {
                             name="password"
                             type="password"
                             _onChange={formik.handleChange}
+                            
                             value={formik.values.password}
                             placeholder="비밀번호를 입력하세요"
                         />
