@@ -85,6 +85,7 @@ const SignupCard = () => {
                             name="password"
                             type="password"
                             _onChange={formik.handleChange}
+                            
                             value={formik.values.password}
                             placeholder="비밀번호를 입력하세요"
                         />

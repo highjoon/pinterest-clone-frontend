@@ -2,14 +2,32 @@ import React, { useState, useEffect } from "react";
 import { Button, Flex } from "../elements";
 // import NewModal from "./NewModal";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 // import url from "../../../config";
-
+import {actionCreators as addPinCreators} from "../redux/modules/addpin"
 const AddPin = ({ history }) => {
   const [imgBase64, setImgBase64] = useState(""); // 파일 base64
   const [imgFile, setImgFile] = useState(null); //파일
-  const [uploadedfile, setUploadedfile] = useState([]); //업로드한 파일
+  const [uploadedfile, setUploadedfile] = useState(""); //업로드한 파일
   const [title, setTitle] = useState("");
   const [imgDes, setImgDes] = useState(""); // 업로드한 파일 설명
+ 
+ const dispatch = useDispatch();
+
+ const SubmitAddPin = () => {
+   console.log(imgFile)
+   const formData = new FormData();
+   formData.append('title',title);
+   formData.append('desc',imgDes);
+   formData.append('image',imgFile);
+   
+   for (let [key,value] of formData) 
+   {
+     console.log(key,value)
+   }
+   dispatch(addPinCreators.addPinAPI(formData))
+
+ }
 
   const fileChangeHandler = (e) => {
     const files = e.target.files;
@@ -110,6 +128,7 @@ const AddPin = ({ history }) => {
                     background_color="red"
                     border_radius="10px"
                     margin="0px 0px 0px 380px"
+                    _onClick={SubmitAddPin}
                   >
                     저장
                   </Button>
