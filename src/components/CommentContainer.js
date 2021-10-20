@@ -16,11 +16,9 @@ const CommentContainer = (props) => {
 
     const comments = useSelector((state) => state.comment.comments);
     const storedId = props.storedId;
-    console.log(comments);
 
     useEffect(() => {
         dispatch(commentActions.getCommentAPI(storedId));
-        // dispatch(commentActions.getComment(storedId));
     }, []);
 
     const dropComment = () => {

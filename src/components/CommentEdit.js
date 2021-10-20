@@ -13,9 +13,16 @@ const CommentEdit = (props) => {
         if (window.confirm("정말로 취소하시겠습니까?")) _deActivateEdit();
     };
 
+    const onEnterSubmit = (e) => {
+        if (e.key === "Enter") {
+            submitComment();
+            e.target.value = "";
+        }
+    };
+
     const submitComment = () => {
         const newCommentObj = {
-            id: id,
+            id,
             content: newComment.current.value,
         };
         dispatch(commentActions.editCommentAPI(id, newCommentObj));
@@ -24,7 +31,11 @@ const CommentEdit = (props) => {
 
     return (
         <EditForm>
-            <EditInput type="text" ref={newComment} />
+            <EditInput
+                type="text"
+                ref={newComment}
+                onKeyPress={onEnterSubmit}
+            />
             <BtnContainer>
                 <Button
                     className="submitBtn"
