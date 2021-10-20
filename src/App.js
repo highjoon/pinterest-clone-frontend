@@ -2,13 +2,14 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configureStore.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "./components/Header";
 import Mainboard from "./components/Mainboard.js";
 import unsplash from "./api/unsplash";
 import LoginHeader from "./components/LoginHeader.js";
 import LoginMainboard from "./components/LoginMainboard.js";
 import { actionCreators as PinCreators } from "./redux/modules/pin.js";
+import { actionCreators as MainActions} from "./redux/modules/main.js";
 import { PinDetail } from "./pages";
 import AddPin from "./pages/AddPin.js";
 
@@ -20,6 +21,12 @@ function App() {
             behavior: "smooth",
         });
     //
+
+
+
+
+
+
     const [pins, setNewpins] = React.useState([]);
 
     const getImages = (term) => {
@@ -78,7 +85,7 @@ function App() {
                 </Route>
                 <Route path="/main" exact>
                     <Header onSubmit={onSearchSubmit} />
-                    <Mainboard pins={pins} />
+                    <Mainboard  />
                 </Route>
                 <Route path="/detail/:id" component={PinDetail} />
                 <Route path="/addpin" exact component={AddPin} />

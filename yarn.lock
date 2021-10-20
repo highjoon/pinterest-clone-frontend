@@ -1471,6 +1471,11 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@hookform/resolvers@^2.8.2":
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-2.8.2.tgz#590dcc23212a659bad08212138261c3950ef09f1"
+  integrity sha512-oDTGrm7yHxT4VIv4kJcfjvWvozCbdcL0/jrpbAkeo39FYn78XnKOrrGTNmrXdfu+EQVkNIdZ47IYRFManZ4jUA==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"
@@ -9842,10 +9847,10 @@ react-fast-compare@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
-react-hook-form@^7.17.4:
-  version "7.17.4"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.17.4.tgz#232b6aaccddb91eb4a228ac20b154abd90866fdb"
-  integrity sha512-7XhbCr7d9fDC1TgcK/BUbt7D3q0VJMu7jPErfsa0JrxVjv/nni41xWdJcy0Zb7R+Np8OsCkQ2lMyloAtE3DLiQ==
+react-hook-form@^7.17.5:
+  version "7.17.5"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.17.5.tgz#3852f294159378d0b5893c9fcc89e313937c6f89"
+  integrity sha512-4bPtPGkpVhZlgtTbtMGi0RFphKHgxCj5u3AsGz3SBdleELlG1pDf9zRQOtfGlOGkZlc7u78RzD0xu9kOw7PYdQ==
 
 react-icons@^4.3.1:
   version "4.3.1"

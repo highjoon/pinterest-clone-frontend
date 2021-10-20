@@ -19,6 +19,7 @@ const Input = (props) => {
         font_size,
         _ref,
         _onKeyPress,
+        _onBlur,
     } = props;
     const styles = {
         width,
@@ -42,6 +43,7 @@ const Input = (props) => {
             onChange={_onChange}
             ref={_ref}
             onKeyPress={_onKeyPress}
+            onBlur= {_onBlur}
             {...styles}
         />
     );
@@ -50,6 +52,7 @@ const Input = (props) => {
 Input.defaultProps = {
     _onClick: () => {},
     _onChange: () => {},
+    _onBlur : () => {},
 };
 
 const DefaultInput = styled.input`

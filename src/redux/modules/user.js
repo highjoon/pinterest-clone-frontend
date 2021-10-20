@@ -13,18 +13,21 @@ const LOGIN_CHECK = "LOGIN_CHECK";
 const GET_USER = "GET_USER";
 const SET_USER = "SET_USER";
 const FIND_USER = "FIND_USER";
+const FIND_LOGIN = "FIND_LOGIN";
 const logIn = createAction(LOG_IN, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const loginCheck = createAction(LOGIN_CHECK, (cookie) => ({
     cookie,
 }));
 
+const findLogin = createAction(FIND_LOGIN, (loginId) => ({loginId}))
 
 const findUser = createAction(FIND_USER, (is_id) => ({is_id}))
 const initialState = {
     user: [],
     is_login: false,
     is_id: false,
+    loginId: '',
 };
 
 const loginAPI = (value) => {
@@ -73,17 +76,14 @@ const loginActionAPI = (email) => {
       method: 'GET',
       url: `http://13.125.174.214/user/login/${email}`,
       data: {
-       
+    
       },
     })
       .then((res) => {
-        // if (res.data.token != null) {
+      
        dispatch(findUser(true));
-
-        // }
-        // else {
-        //   window.alert('ID를 다시 확인해주세요');
-        // }
+       dispatch(findLogin(email))
+       
       })
       .catch((err) => {
         dispatch(findUser(false));
@@ -161,6 +161,10 @@ export default handleActions(
             produce(state, (draft) => {
                 draft.is_id = action.payload.is_id
             }),
+            [FIND_LOGIN] : (state, action) =>
+            produce(state, (draft) => {
+              draft.loginId = action.payload.loginId
+            } )
     },
     initialState
 );
@@ -174,6 +178,7 @@ const actionCreators = {
     signupAPI,
     loginActionAPI,
     findUser,
+    findLogin,
   
 };
 

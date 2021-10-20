@@ -16,29 +16,29 @@ const initialState = {
 
 
 
-const addPinAPI = (formData) => {
+const addPinAPI = (formdata) => {
   
        return function (dispatch, getState, {history}) {
            axios({
                method: 'POST',
                url: 'http://13.125.174.214/pin/1',
                headers: {
-                // "Content-Type": "multipart/form-data",
-                // accept: "application/json",
+                "Content-Type": "multipart/form-data; ",
+                accept: "application/json",
                 "Access-Control-Allow-Origin": "*",
                 authorization: `Bearer ${getCookie("user_login")}`,
             },
-               data: {
-               formData
-               },
+               data: formdata
+               ,
            }).then((res) => {
               dispatch(addPin({
-                 formData
+                 formdata
               }));
               window.alert('핀 등록 완료!')
               history.push('/main')
            })
            .catch((err) => {
+                // console.log(formData)
                 window.alert('핀 등록 실패')
                 console.log(err)
            })

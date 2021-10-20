@@ -5,6 +5,7 @@ import { connectRouter } from "connected-react-router";
 import User from "./modules/user";
 import pin from "./modules/pin";
 import comment from "./modules/comment";
+import Main from "./modules/main"
 // import user from "./modules/user";
 
 export const history = createBrowserHistory();
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     pin: pin,
     comment: comment,
     user: User,
+    main: Main,
     router: connectRouter(history),
 });
 
