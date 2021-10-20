@@ -39,7 +39,7 @@ const Image = (props) => {
 };
 
 Image.defaultProps = {
-    src: "https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E",
+    src: "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png",
     _onClick: () => {},
 };
 

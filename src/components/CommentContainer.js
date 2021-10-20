@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Flex, Text, Icon } from "../elements";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 import {
     faChevronDown,
     faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { CommentWrite } from "./";
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CommentContainer = (props) => {
     const dispatch = useDispatch();

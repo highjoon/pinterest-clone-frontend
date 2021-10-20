@@ -1,9 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Image, Icon, Button } from "../elements";
-import { faHeart, faTools, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useDispatch } from "react-redux";
+import { Image, Icon } from "../elements";
+import { actionCreators as commentActions } from "../redux/modules/comment";
+import { faHeart, faTools, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { CommentEdit } from ".";
 
 const Comment = (props) => {
@@ -19,10 +19,21 @@ const Comment = (props) => {
     };
 
     const deleteComment = (e) => {
-        let targetId =
-            e.target.nodeName === "path"
-                ? e.target.parentNode.attributes.id.value
-                : e.target.attributes.id.value;
+        let targetId = "";
+        switch (e.target.nodeName) {
+            case "path":
+                targetId = e.target.parentNode.attributes.id.value;
+                break;
+            case "DIV":
+                targetId = e.target.children[0].attributes.id.value;
+                break;
+            case "svg":
+                targetId = e.target.attributes.id.value;
+                break;
+            default:
+                targetId = null;
+                break;
+        }
         dispatch(commentActions.deleteCommentAPI(Number(targetId)));
     };
 

@@ -59,7 +59,6 @@ const addCommentAPI = (comments) => {
         apis.addComment(comments)
             .then((res) => {
                 const userName = res.data;
-                console.log(userName);
                 dispatch(addComment(comments, userName));
             })
             .catch((err) => {
