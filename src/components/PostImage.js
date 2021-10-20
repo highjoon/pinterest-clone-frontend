@@ -9,7 +9,8 @@ const PostImage = (props) => {
                 width="100%"
                 border="none"
                 border_radius="32px 32px 32px 32px"
-                src={imgURL.urls.regular}
+                // src={imgURL.urls.regular}
+                src={imgURL}
             />
         </Flex>
     );

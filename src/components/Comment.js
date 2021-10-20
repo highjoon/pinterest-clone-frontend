@@ -23,7 +23,11 @@ const Comment = (props) => {
             e.target.nodeName === "path"
                 ? e.target.parentNode.attributes.id.value
                 : e.target.attributes.id.value;
-        dispatch(commentActions.deleteComment(Number(targetId)));
+        dispatch(commentActions.deleteCommentAPI(Number(targetId)));
+    };
+
+    const toggleLike = () => {
+        dispatch(commentActions.toggleLikeAPI(id));
     };
 
     return (
@@ -52,7 +56,11 @@ const Comment = (props) => {
                     </CommentWrapper>
                 )}
                 <Tools>
-                    <Icon className="tool hover__bg" icon={faHeart} />
+                    <Icon
+                        className="tool hover__bg"
+                        icon={faHeart}
+                        _onClick={toggleLike}
+                    />
                     {comment.likeNum ? (
                         <Span className="likeNum">{comment.likeNum}</Span>
                     ) : (

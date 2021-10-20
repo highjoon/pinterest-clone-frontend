@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Flex, Input, Image, Text, Button } from "../elements";
 import { CommentList } from "./";
@@ -10,13 +10,12 @@ const CommentWrite = (props) => {
 
     let [isActive, setIsActive] = useState(false);
     let [isWrite, setIsWrite] = useState(false);
-    const commentText = useRef();
+    let commentText = useRef();
 
     const activateInput = (e) => setIsActive(true);
     const deActivateInput = (e) => {
         if (window.confirm("정말로 취소하시겠습니까?")) {
-            e.target.parentNode.parentNode.parentNode.children[1].children[2].value =
-                "";
+            commentText = "";
             setIsActive(false);
         }
     };
@@ -36,16 +35,18 @@ const CommentWrite = (props) => {
     const submitComment = (e) => {
         if (commentText.current.value) {
             const commentObj = {
-                id: Date.now(),
                 content: commentText.current.value,
-                likeNum: 0,
-                user: "테스트유저",
                 pin: Number(storedId),
             };
-            dispatch(commentActions.addComment(commentObj));
+            // console.log(commentObj);
+            dispatch(commentActions.addCommentAPI(commentObj));
             commentText.current.value = "";
         }
     };
+
+    // useEffect(() => {
+    //     dispatch(commentActions.getCommentAPI())
+    // })
 
     return (
         <Flex

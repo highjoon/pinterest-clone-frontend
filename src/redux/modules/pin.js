@@ -3,20 +3,20 @@ import { produce } from "immer";
 import { apis } from "../../lib/axios";
 
 const GET_PIN = "GET_PIN";
-
 const GET_ZAPPIN = "GET_ZAPPIN";
 
 const getPin = createAction(GET_PIN, (pinDetail) => ({ pinDetail }));
-const getZapPin = createAction(GET_ZAPPIN,(pin)=>({pin}))
+const getZapPin = createAction(GET_ZAPPIN, (pin) => ({ pin }));
+
 const initialState = {
     pinDetail: {
         id: 1,
         imgURL: "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2014/11/img196.jpg",
-        title: "테스트 제목입니다.",
-        desc: "테스트 설명입니다.",
+        title: "임시 테스트 제목입니다.",
+        desc: "임시 테스트 설명입니다.",
         webSite: "https://www.naver.com/",
-        user: "테스트 유저",
-        board: 1,
+        user: "임시 테스트 유저",
+        board: "임시 테스트 보드",
     },
     pin: [],
 };
@@ -25,7 +25,8 @@ const getPinAPI = (id) => {
     return (dispatch, getState, { history }) => {
         apis.getPin(id)
             .then((res) => {
-                console.log(res.data);
+                const pinDetail = res.data.pinDetail;
+                dispatch(getPin(pinDetail));
             })
             .catch((err) => {
                 console.log(err);
@@ -39,7 +40,7 @@ export default handleActions(
             produce(state, (draft) => {
                 draft.pinDetail = action.payload.pinDetail;
             }),
-            [GET_ZAPPIN]: (state, action) =>
+        [GET_ZAPPIN]: (state, action) =>
             produce(state, (draft) => {
                 draft.pin = action.payload.pin;
             }),
@@ -47,5 +48,6 @@ export default handleActions(
     initialState
 );
 
-const actionCreators = { getPin, getPinAPI, getZapPin };
+const actionCreators = { getPinAPI, getZapPin };
+
 export { actionCreators };
