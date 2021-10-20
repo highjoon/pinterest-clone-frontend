@@ -6,13 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Icon = (props) => {
     const { className, id, icon, _onClick, children } = props;
     return (
-        <IconContainer className={className}>
-            <FontAwesomeIcon
-                className={className}
-                icon={icon}
-                id={id}
-                onClick={_onClick}
-            />
+        <IconContainer className={className} onClick={_onClick}>
+            <FontAwesomeIcon className={className} icon={icon} id={id} />
             {children}
         </IconContainer>
     );
@@ -22,6 +17,7 @@ const IconContainer = styled.div`
     text-align: center;
     width: 20px;
     cursor: pointer;
+    z-index: 6;
 
     &.header__tools {
         width: 48px;

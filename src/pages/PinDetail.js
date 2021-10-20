@@ -38,7 +38,7 @@ const PinDetail = (props) => {
                 width="50%"
                 border_radius="0 0 32px 32px"
             >
-                <PinHeader />
+                <PinHeader imgURL={pinDetail.imgURL} />
                 <PinDesc
                     webSite={pinDetail.webSite}
                     title={pinDetail.title}

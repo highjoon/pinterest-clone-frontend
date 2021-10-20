@@ -19,6 +19,7 @@ const Flex = (props) => {
         gap,
         cursor,
         hidden,
+        _onClick,
     } = props;
 
     const styles = {
@@ -39,13 +40,18 @@ const Flex = (props) => {
 
     if (hidden) {
         return (
-            <FlexBox {...styles} display="none" className={className}>
+            <FlexBox
+                {...styles}
+                display="none"
+                className={className}
+                onClick={_onClick}
+            >
                 {children}
             </FlexBox>
         );
     } else {
         return (
-            <FlexBox {...styles} className={className}>
+            <FlexBox {...styles} className={className} onClick={_onClick}>
                 {children}
             </FlexBox>
         );

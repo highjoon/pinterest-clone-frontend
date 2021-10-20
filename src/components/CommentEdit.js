@@ -5,7 +5,7 @@ import { Button } from "../elements";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CommentEdit = (props) => {
-    const { _deActivateEdit, storedId, id } = props;
+    const { _deActivateEdit, id } = props;
     const dispatch = useDispatch();
     const newComment = useRef();
 
