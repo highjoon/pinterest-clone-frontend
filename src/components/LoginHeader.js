@@ -9,6 +9,13 @@ import { Textsms } from "@material-ui/icons";
 import { KeyboardArrowDown } from "@material-ui/icons";
 
 const LoginHeader = (props) => {
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth",
+        });
+ 
+    };
     return (
         <Wrapper>
             <LogoWrapper>
@@ -62,10 +69,10 @@ const LoginHeader = (props) => {
                     </div>
                 </IconButton>
                 <HomePageButton>
-                    <a href="/">로그인</a>
+                    <a  onClick={scrollToBottom}>로그인</a>
                 </HomePageButton>
                 <FollowingButton>
-                    <a href="/">가입하기</a>
+                    <a  onClick={scrollToBottom}>가입하기</a>
                 </FollowingButton>
             </IconsWrapper>
         </Wrapper>

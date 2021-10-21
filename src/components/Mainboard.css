@@ -1,0 +1,58 @@
+@media (min-width: 0px) and (max-width:755px) {
+     .mainboard__container {
+         max-width: 504px;
+         column-count:2;
+     }
+}
+
+@media (min-width:756px) and (max-width:1007px) {
+    .mainboard__container {
+        max-width: 756px;
+        column-count:3;
+    }
+}
+
+@media (min-width:1008px) and (max-width:1259px) {
+    .mainboard__container {
+        max-width: 1008px;
+        column-count:4;
+    }
+}
+
+@media (min-width:1260px) and (max-width:1480px) {
+    .mainboard__container {
+        max-width: 1260px;
+        column-count:5;
+    }
+}
+
+@media (min-width:1512px) and (max-width:1762px) {
+    .mainboard__container {
+        max-width: 1512px;
+        column-count:6;
+    }
+}
+@media (min-width:1762px) and (max-width:2100px) {
+    .mainboard__container {
+        max-width: 1762px;
+        column-count:7;
+    }
+}
+@media (min-width:2100px) and (max-width:2352px) {
+    .mainboard__container {
+        max-width: 2100px;
+        column-count:8;
+    }
+}
+@media (min-width:2352px) and (max-width:2600px) {
+    .mainboard__container {
+        max-width: 2352px;
+        column-count:9;
+    }
+}
+@media (min-width:2600px) and (max-width:2852px) {
+    .mainboard__container {
+        max-width: 2600px;
+        column-count:10;
+    }
+}

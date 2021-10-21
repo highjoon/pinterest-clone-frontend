@@ -7,17 +7,22 @@ import pin from "./modules/pin";
 import comment from "./modules/comment";
 import Main from "./modules/main";
 import My from "./modules/my";
+import Search from "./modules/search";
+
 // import user from "./modules/user";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-  pin: pin,
-  comment: comment,
-  user: User,
-  main: Main,
-  my: My,
-  router: connectRouter(history),
+
+ 
+    pin: pin,
+    comment: comment,
+    user: User,
+    main: Main,
+    search: Search,
+    router: connectRouter(history),
+
 });
 
 const middlewares = [thunk.withExtraArgument({ history: history })];

@@ -13,7 +13,7 @@ const instance = axios.create({
 
 export const apis = {
     getPin: (id) => instance.get(`view/detail/${id}`),
-    searchPin: (contents) => instance.get(`view/search?search=${contents}`),
+    searchPin: (word) => instance.get(`view/search/${word}`),
     getComment: (id) => instance.get(`comment/${id}`),
     addComment: (contents) => instance.post(`comment`, contents),
     editComment: (id, contents) => instance.patch(`comment/${id}`, contents),

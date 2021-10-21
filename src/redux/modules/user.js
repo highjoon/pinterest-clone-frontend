@@ -35,6 +35,12 @@ const loginAPI = (value) => {
                 email: value.email,
                 password: value.password,
             },
+            headers: {
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                authorization: `Bearer ${getCookie("user_login")}`,
+            },
         })
             .then((res) => {
                 // if (res.data.token != null) {
@@ -45,7 +51,6 @@ const loginAPI = (value) => {
 
                 setCookie("user_login", jwtToken);
                 localStorage.setItem("user_name", _id);
-                axios.defaults.headers.common["Authorization"] = `${jwtToken}`;
                 dispatch(
                     logIn({
                         email: value.email,
@@ -87,11 +92,16 @@ const signupAPI = (value) => {
         axios({
             method: "POST",
             url: "http://13.125.174.214/user/signup",
-
             data: {
                 email: value.email,
                 password: value.password,
                 age: value.age,
+            },
+            headers: {
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                authorization: `Bearer ${getCookie("user_login")}`,
             },
         })
             .then((res) => {
