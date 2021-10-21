@@ -49,7 +49,7 @@ const PinDetail = (props) => {
                     flex_direction="column"
                     align_items="center"
                 >
-                    <PinWriterInfo />
+                    <PinWriterInfo user={pinDetail.user} />
                     <CommentContainer storedId={storedId} />
                 </PinContainer>
                 <PinSaveInfo user={pinDetail.user} board={pinDetail.board} />

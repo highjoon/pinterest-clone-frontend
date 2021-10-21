@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import Pin from "./Pin";
 import { FaAngleDown } from "react-icons/fa";
-import { Text } from "../elements";
 import SignupCard from "./SignupCard";
-import './Mainboard.css'
+import "./Mainboard.css";
+import Pin from "./Pin";
+
 const LoginMainboard = (props) => {
     let { pins } = props;
     const [viewLogin, setViewLogin] = useState(false);
@@ -97,12 +97,9 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-    
-
     height: 100%;
     background-color: white;
     margin: 0 auto;
-    
 `;
 
 const MainPost = styled.div`

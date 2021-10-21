@@ -2,11 +2,6 @@ import { Pinterest } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
-import { Search } from "@material-ui/icons";
-import { Notifications } from "@material-ui/icons";
-import { Face } from "@material-ui/icons";
-import { Textsms } from "@material-ui/icons";
-import { KeyboardArrowDown } from "@material-ui/icons";
 
 const LoginHeader = (props) => {
     const scrollToBottom = () => {

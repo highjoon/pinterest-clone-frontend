@@ -1,18 +1,18 @@
 import React, { useRef } from "react";
-import { Button, Flex, Icon } from "../elements";
+import { useDetectOutsideClick } from "../hooks";
 import {
     faEllipsisH,
     faUpload,
     faLink,
 } from "@fortawesome/free-solid-svg-icons";
+import { Button, Flex, Icon } from "../elements";
 import { DropDown } from "./";
-import { useDetectOutsideClick } from "../hooks";
 
 const PostHeader = (props) => {
     const { imgURL } = props;
     const dropdownRef = useRef(null);
     const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
-    const onClick = () => setIsActive(!isActive);
+    const toggleActive = () => setIsActive(!isActive);
 
     const copyURL = () => {
         const target = imgURL;
@@ -53,8 +53,7 @@ const PostHeader = (props) => {
                     <Icon
                         className=" header__tools hover__bg"
                         icon={faEllipsisH}
-                        _onClick={onClick}
-                        onClick={onClick}
+                        _onClick={toggleActive}
                     />
                 </Button>
                 <DropDown

@@ -1,8 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { apis } from "../../lib/axios";
 import axios from "axios";
-import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
+import { getCookie } from "../../shared/Cookie";
 
 const GET_PIN = "GET_PIN";
 const GET_ZAPPIN = "GET_ZAPPIN";

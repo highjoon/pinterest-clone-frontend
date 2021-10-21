@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { actionCreators as searchActions } from "../redux/modules/search";
-import '../components/Mainboard.css'
+import "../components/Mainboard.css";
+
 const Search = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const resultPins = useSelector((state) => state.search.pins);
 
     useEffect(() => {
-        // dispatch(searchActions.getSearchAPI(searchWord));
         dispatch(searchActions.getSearchAPI(localStorage.getItem("word")));
     }, []);
 
@@ -57,12 +57,9 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-   ;
-
     height: 100%;
     background-color: white;
     margin: 0 auto;
- 
 `;
 
 const FloatButton = styled.button`

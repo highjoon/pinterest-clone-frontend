@@ -1,21 +1,31 @@
-import { Pinterest } from "@material-ui/icons";
-import { IconButton } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { Search } from "@material-ui/icons";
-import { Notifications } from "@material-ui/icons";
-import { Face } from "@material-ui/icons";
-import { Textsms } from "@material-ui/icons";
-import { KeyboardArrowDown } from "@material-ui/icons";
-import { actionCreators as searchActions } from "../redux/modules/search";
 import { useDispatch } from "react-redux";
-function Header(props) {
+import { useHistory } from "react-router";
+import { IconButton } from "@material-ui/core";
+import {
+    Pinterest,
+    Search,
+    Notifications,
+    Textsms,
+    Face,
+    KeyboardArrowDown,
+} from "@material-ui/icons";
+import { useDetectOutsideClick } from "../hooks";
+import { actionCreators as searchActions } from "../redux/modules/search";
+import { DropDown } from "./";
+
+const Header = (props) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [input, setInput] = React.useState(" ");
+    const dropdownRef = useRef(null);
     const onSearchSubmit = (e) => {
         e.preventDefault();
         dispatch(searchActions.getSearchAPI(input));
     };
+    const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+    const toggleActive = () => setIsActive(!isActive);
 
     return (
         <Wrapper>
@@ -24,12 +34,9 @@ function Header(props) {
                     <Pinterest />
                 </IconButton>
             </LogoWrapper>
-            <HomePageButton>
-                <a href="/main">홈</a>
+            <HomePageButton onClick={() => history.push("/main")}>
+                <span>홈</span>
             </HomePageButton>
-            {/* <FollowingButton>
-            <a href = "/">홈</a>
-        </FollowingButton> */}
             <SearchWrapper>
                 <SearchBarWrapper>
                     <IconButton>
@@ -57,13 +64,18 @@ function Header(props) {
                     <Face />
                 </IconButton>
 
-                <IconButton>
+                <IconButton onClick={toggleActive}>
                     <KeyboardArrowDown />
+                    <DropDown
+                        _ref={dropdownRef}
+                        className={`menu ${isActive ? "active" : "inactive"}`}
+                        type="headerMenu"
+                    />
                 </IconButton>
             </IconsWrapper>
         </Wrapper>
     );
-}
+};
 export default Header;
 
 const Wrapper = styled.div`
@@ -95,24 +107,10 @@ const HomeButtons = styled.div`
 const HomePageButton = styled(HomeButtons)`
     background-color: rgb(17, 17, 17);
 
-    a {
+    span {
         text-decoration: none;
         color: white;
         font-weight: 700;
-    }
-`;
-
-const FollowingButton = styled(HomeButtons)`
-    background-color: white;
-
-    a {
-        text-decoration: none;
-        color: black;
-        font-weight: 700;
-    }
-
-    :hover {
-        background-color: #e1e1e1;
     }
 `;
 

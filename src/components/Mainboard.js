@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { actionCreators as MainActions } from "../redux/modules/main";
-import './Mainboard.css'
+import "./Mainboard.css";
+
 const Mainboard = (props) => {
     const dispatch = useDispatch();
 
@@ -18,9 +19,9 @@ const Mainboard = (props) => {
             <Container className="mainboard__container">
                 {mainPins.map((pin, index) => {
                     return (
-                        <ImageWrapper >
-                            <ImageContainer >
-                                <div 
+                        <ImageWrapper>
+                            <ImageContainer>
+                                <div
                                     onClick={() => {
                                         history.push(`/detail/${pin.id}`);
                                     }}
@@ -56,12 +57,9 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
- 
-
     height: 100%;
     background-color: white;
     margin: 0 auto;
-   
 `;
 
 const FloatButton = styled.button`

@@ -1,13 +1,13 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Text, Button, Input } from "../elements";
-import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const LoginForm = () => {
     const dispatch = useDispatch();
-    const loginName = useSelector(state=>state.user.loginId)
+    const loginName = useSelector((state) => state.user.loginId);
     const formik = useFormik({
         initialValues: {
             email: "",

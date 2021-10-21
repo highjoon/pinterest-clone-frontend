@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-function Pin(props) {
+
+const Pin = (props) => {
     let { urls } = props;
     return (
         <Wrapper>
@@ -9,7 +10,7 @@ function Pin(props) {
             </Container>
         </Wrapper>
     );
-}
+};
 
 export default Pin;
 
