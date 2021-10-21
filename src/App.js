@@ -5,7 +5,7 @@ import { history } from "./redux/configureStore.js";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./components/Header";
 import Mainboard from "./components/Mainboard.js";
-import Search from "./components/Search";
+import Search from "./pages/Search";
 import unsplash from "./api/unsplash";
 import LoginHeader from "./components/LoginHeader.js";
 import LoginMainboard from "./components/LoginMainboard.js";
@@ -76,15 +76,18 @@ function App() {
         <React.Fragment>
             <ConnectedRouter history={history}>
                 <Route path="/" exact>
-                    <LoginHeader onSubmit={onSearchSubmit} />
+                    {/* <LoginHeader onSubmit={onSearchSubmit} /> */}
+                    <LoginHeader />
                     <LoginMainboard pins={pins} />
                 </Route>
-                <Route path="/main" exact>
+
+                {/* <Header onSubmit={onSearchSubmit} /> */}
+                <Route path="/main">
                     <Header onSubmit={onSearchSubmit} />
                     <Mainboard />
                 </Route>
-                <Route path="/search" exact>
-                    {/* <Header onSubmit={onSearchSubmit} /> */}
+                <Route path="/view/search/:word" exact>
+                    <Header onSubmit={onSearchSubmit} />
                     <Search />
                 </Route>
                 <Route path="/detail/:id" component={PinDetail} />

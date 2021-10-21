@@ -10,7 +10,6 @@ import CommentContainer from "./CommentContainer";
 import CommentWrite from "./CommentWrite";
 import CommentList from "./CommentList";
 import DropDown from "./DropDown";
-import Search from "./Search";
 
 export {
     PinImage,
@@ -25,5 +24,4 @@ export {
     CommentList,
     CommentWrite,
     DropDown,
-    Search,
 };

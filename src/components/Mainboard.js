@@ -1,16 +1,12 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import {useSelector, useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import {actionCreators as MainActions} from "../redux/modules/main"
+import { actionCreators as MainActions } from "../redux/modules/main";
 const Mainboard = (props) => {
-    
     const dispatch = useDispatch();
 
-   
-    const mainPins = useSelector((state) => state.main.list)
-    
-    console.log(mainPins)
+    const mainPins = useSelector((state) => state.main.list);
     let history = useHistory();
 
     useEffect(() => {
@@ -20,21 +16,18 @@ const Mainboard = (props) => {
         <Wrapper>
             <Container>
                 {mainPins.map((pin, index) => {
-                    
                     return (
-                         <ImageWrapper>
-                    <ImageContainer>
-                    <div onClick={() => {
-                     history.push(`/detail/${pin.id}`);
-                            }}
-                        >
-                <img src={pin.imgURL} alt="pin" />
-                
-                        </div>
-                       
-               </ImageContainer>
-           </ImageWrapper>
-                       
+                        <ImageWrapper>
+                            <ImageContainer>
+                                <div
+                                    onClick={() => {
+                                        history.push(`/detail/${pin.id}`);
+                                    }}
+                                >
+                                    <img src={pin.imgURL} alt="pin" />
+                                </div>
+                            </ImageContainer>
+                        </ImageWrapper>
                     );
                 })}
             </Container>

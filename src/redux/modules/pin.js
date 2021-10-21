@@ -1,6 +1,8 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../lib/axios";
+import axios from "axios";
+import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 
 const GET_PIN = "GET_PIN";
 const GET_ZAPPIN = "GET_ZAPPIN";
@@ -23,7 +25,18 @@ const initialState = {
 
 const getPinAPI = (id) => {
     return (dispatch, getState, { history }) => {
-        apis.getPin(id)
+        // apis.getPin(id)
+        axios({
+            method: "GET",
+            url: `http://13.125.174.214/view/detail/${id}`,
+            data: { id },
+            headers: {
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                authorization: `Bearer ${getCookie("user_login")}`,
+            },
+        })
             .then((res) => {
                 const pinDetail = res.data.pinDetail;
                 dispatch(getPin(pinDetail));

@@ -7,12 +7,14 @@ import { Notifications } from "@material-ui/icons";
 import { Face } from "@material-ui/icons";
 import { Textsms } from "@material-ui/icons";
 import { KeyboardArrowDown } from "@material-ui/icons";
+import { actionCreators as searchActions } from "../redux/modules/search";
+import { useDispatch } from "react-redux";
 function Header(props) {
+    const dispatch = useDispatch();
     const [input, setInput] = React.useState(" ");
     const onSearchSubmit = (e) => {
         e.preventDefault();
-        props.onSubmit(input);
-        console.log("this is the input", input);
+        dispatch(searchActions.getSearchAPI(input));
     };
 
     return (
