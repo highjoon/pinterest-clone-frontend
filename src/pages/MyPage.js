@@ -10,13 +10,14 @@ import { actionCreators as MyActions } from "../redux/modules/my";
 const MyPage = (props) => {
   let history = useHistory();
   const dispatch = useDispatch();
-
   const myPins = useSelector((state) => state.my.list);
-
-  console.log(myPins);
   useEffect(() => {
     dispatch(MyActions.getMyAPI());
   }, []);
+  
+
+  console.log(myPins[0]);
+
 
   return (
     <Wrapper className="Wrapper">
@@ -76,6 +77,25 @@ const MyPage = (props) => {
           </Button>
         </Flex>
       </Flex>
+     
+
+      <Container className="mainboard__container">
+                {myPins.map((pin, index) => {
+                    return (
+                        <ImageWrapper >
+                            <ImageContainer >
+                                <div 
+                                   
+                                >
+                                    <img src={pin.imgURL} alt="pin" />
+                                </div>
+                            </ImageContainer>
+                        </ImageWrapper>
+                    );
+                })}
+            </Container>
+
+
       <FloatButton>?</FloatButton>
       <GloatButton
         onClick={() => {
@@ -169,100 +189,31 @@ const FloatButton = styled.button`
   }
 `;
 
-// const AppContent = styled.div`
-//   width: 100%;
-//   box-sizing: border-box;
-//   margin-top: 200px;
-// `;
+const Container = styled.div`
+ 
 
-// const ProfileWrapper = styled.div`
-//   width: 100%;
-// `;
+    height: 100%;
+    background-color: white;
+   
+   
+`;
+const ImageWrapper = styled.div`
+   display:flex;
+   
+`;
 
-// const IconBar = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   flex-direction: start;
-//   align-content: center;
-//   padding: 8px auto;
-//   margin: 4px auto;
-//   width: 100%;
-//   background: hsla(0, 0%, 100%, 0.97);
-//   position: fixed;
-//   z-index: 9;
-//   top: 75px;
-// `;
+const ImageContainer = styled.div`
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 236px;
 
-// const IconBarInside = styled.div`
-//   max-width: 800px;
-//   width: 100%;
-//   align-items: center;
-//   margin: 30px auto 10px;
-// `;
-
-// const IconsWrapper = styled.div`
-//   display: flex;
-//   flex: 0 0 auto;
-//   align-items: center;
-//   flex-direction: row;
-//   width: 33.33%;
-// `;
-
-// const SvgWrapper = styled.svg`
-//   color: #767676;
-//   height: 48px;
-//   width: 48px;
-//   fill: currentColor;
-//   stroke-width: 0;
-//   vertical-align: middle;
-//   cursor: pointer;
-//   position: absolute;
-//   top: 25%;
-//   left: 12px;
-//   path {
-//     margin: auto;
-//     padding: auto;
-//     height: 20px;
-//     width: 20px;
-//   }
-// `;
-
-// const MypageButtonAdd = styled.button`
-//   cursor: pointer;
-//   border: none;
-//   border-radius: 50%;
-//   background: transparent;
-//   position: relative;
-//   display: inline-block;
-//   outline-style: none;
-// `;
-// //Hidden by Default
-// const DropdownContent = styled.div`
-//   display: ${({ isActive }) => (isActive ? "block" : "none")};
-//   position: absolute;
-//   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-//   border-radius: 10px;
-//   border: 32x solid rgb(195, 195, 195);
-//   background: #ffff;
-// `;
-
-// const MypageButton = styled.button`
-//   cursor: pointer;
-//   border: none;
-//   border-radius: 50%;
-//   background: transparent;
-// `;
-
-// const ProfileInfo = styled.div`
-//   max-width: 800px;
-//   width: 100%;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   margin: 140px auto auto;
-// `;
-
-// // const MiddleNav = styled.div`
-// //   display: flex;
-// //   /* height: 2000px; */
-// // `;
+    img {
+        display: flex;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 16px;
+        object-fit: cover;
+    }
+`;

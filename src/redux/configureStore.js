@@ -15,7 +15,7 @@ export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
 
- 
+    my:My,
     pin: pin,
     comment: comment,
     user: User,

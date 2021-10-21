@@ -25,11 +25,12 @@ const getMyAPI = () => {
       },
     })
       .then((res) => {
-        console.log(res.data);
-        dispatch(getMy(res.data));
+       
+        dispatch(getMy(res.data.myBoard.Pins));
+        
       })
       .catch((err) => {
-        history.push("/");
+        history.push("/mypage");
       });
   };
 };
@@ -39,6 +40,7 @@ export default handleActions(
     [GET_MY]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.list;
+     
       }),
   },
   initialState
