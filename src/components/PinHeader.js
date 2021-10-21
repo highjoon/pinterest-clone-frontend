@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button, Flex, Icon } from "../elements";
 import {
     faEllipsisH,
     faUpload,
     faLink,
 } from "@fortawesome/free-solid-svg-icons";
+import { DropDown } from "./";
+import { useDetectOutsideClick } from "../hooks";
 
 const PostHeader = (props) => {
+    const { imgURL } = props;
+    const dropdownRef = useRef(null);
+    const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+    const onClick = () => setIsActive(!isActive);
+
+    const copyURL = () => {
+        const target = imgURL;
+
+        if (!document.queryCommandSupported("copy")) {
+            return alert("복사하기가 지원되지 않는 브라우저입니다.");
+        }
+
+        const textarea = document.createElement("textarea");
+        textarea.value = target;
+        textarea.style.top = 0;
+        textarea.style.left = 0;
+        textarea.style.position = "fixed";
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        window.alert("링크가 복사되었습니다.");
+    };
     return (
         <Flex
             width="90%"
@@ -26,8 +53,15 @@ const PostHeader = (props) => {
                     <Icon
                         className=" header__tools hover__bg"
                         icon={faEllipsisH}
+                        _onClick={onClick}
+                        onClick={onClick}
                     />
                 </Button>
+                <DropDown
+                    _ref={dropdownRef}
+                    className={`menu ${isActive ? "active" : "inactive"}`}
+                    imgURL={imgURL}
+                />
                 <Button
                     width="48px"
                     height="48px"
@@ -49,25 +83,14 @@ const PostHeader = (props) => {
                     background_color="transparent"
                     border="none"
                 >
-                    <Icon className="header__tools" icon={faLink} />
+                    <Icon
+                        className="header__tools"
+                        icon={faLink}
+                        _onClick={copyURL}
+                    />
                 </Button>
             </Flex>
             <Flex width="50%" justify_content="flex-end">
-                {/* <Flex margin="0px 5px 0px 0px" cursor="pointer">
-                    <Text
-                        width="100px"
-                        padding="0px"
-                        className="profile"
-                        text_align="right"
-                        font_size="16px"
-                        font_weight="700"
-                        background_color="transparent"
-                        color="black"
-                    >
-                        프로필
-                    </Text>
-                    <Icon icon={faChevronDown} />
-                </Flex> */}
                 <Button
                     className="saveBtn"
                     width="64px"

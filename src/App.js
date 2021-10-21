@@ -5,13 +5,13 @@ import { history } from "./redux/configureStore.js";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./components/Header";
 import Mainboard from "./components/Mainboard.js";
+import Search from "./components/Search";
 import unsplash from "./api/unsplash";
 import LoginHeader from "./components/LoginHeader.js";
 import LoginMainboard from "./components/LoginMainboard.js";
 import { actionCreators as PinCreators } from "./redux/modules/pin.js";
-import { actionCreators as MainActions} from "./redux/modules/main.js";
-import { PinDetail } from "./pages";
-import AddPin from "./pages/AddPin.js";
+import { actionCreators as MainActions } from "./redux/modules/main.js";
+import { PinDetail, AddPin, MyPage } from "./pages";
 
 function App() {
     const dispatch = useDispatch();
@@ -22,11 +22,6 @@ function App() {
         });
     //
 
-
-
-
-
-
     const [pins, setNewpins] = React.useState([]);
 
     const getImages = (term) => {
@@ -36,6 +31,7 @@ function App() {
             },
         });
     };
+
     const onSearchSubmit = (term) => {
         getImages(term).then((res) => {
             let results = res.data.results;
@@ -85,10 +81,15 @@ function App() {
                 </Route>
                 <Route path="/main" exact>
                     <Header onSubmit={onSearchSubmit} />
-                    <Mainboard  />
+                    <Mainboard />
+                </Route>
+                <Route path="/search" exact>
+                    {/* <Header onSubmit={onSearchSubmit} /> */}
+                    <Search />
                 </Route>
                 <Route path="/detail/:id" component={PinDetail} />
                 <Route path="/addpin" exact component={AddPin} />
+                <Route path="/mypage" exact component={MyPage} />
             </ConnectedRouter>
         </React.Fragment>
     );
