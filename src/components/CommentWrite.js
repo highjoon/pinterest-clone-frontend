@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Flex, Input, Image, Text, Button } from "../elements";
-import { CommentList } from "./";
 import { actionCreators as commentActions } from "../redux/modules/comment";
+import { CommentList } from "./";
 
 const CommentWrite = (props) => {
     const dispatch = useDispatch();

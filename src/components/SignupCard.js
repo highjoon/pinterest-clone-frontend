@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { actionCreators as userActions } from "../redux/modules/user";
-import { Flex, Text, Button, Input } from "../elements";
-import { useDispatch, useSelector } from "react-redux";
-
-import LoginForm from "./LoginForm";
 import { Pinterest } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { Flex, Text, Button, Input } from "../elements";
+import LoginForm from "./LoginForm";
+
 const SignupCard = () => {
     const [loginMode, setLoginMode] = useState(true);
     const dispatch = useDispatch();
-    const idCheck = useSelector(state => state.user.is_id)
+    const idCheck = useSelector((state) => state.user.is_id);
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -59,7 +59,7 @@ const SignupCard = () => {
             <Text size="1.6rem" margin="0 0 30px 0">
                 시도해 볼 만한 새로운 아이디어 찾기
             </Text>
-            {idCheck? (
+            {idCheck ? (
                 <LoginForm />
             ) : (
                 <form onSubmit={formik.handleSubmit}>
@@ -73,7 +73,11 @@ const SignupCard = () => {
                             _onChange={formik.handleChange}
                             value={formik.values.email}
                             placeholder="이메일"
-                            _onBlur={(e)=>{dispatch(userActions.loginActionAPI(e.target.value))}}
+                            _onBlur={(e) => {
+                                dispatch(
+                                    userActions.loginActionAPI(e.target.value)
+                                );
+                            }}
                         />
                         {formik.touched.email && formik.errors.email ? (
                             <Text margin="5px 0" color="#e60023">
@@ -88,7 +92,6 @@ const SignupCard = () => {
                             name="password"
                             type="password"
                             _onChange={formik.handleChange}
-                            
                             value={formik.values.password}
                             placeholder="비밀번호를 입력하세요"
                         />

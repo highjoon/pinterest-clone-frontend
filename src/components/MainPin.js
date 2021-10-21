@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-function MainPin(props) {
+
+const MainPin = (props) => {
     let { pin } = props;
     return (
         <ImageWrapper>
@@ -9,7 +10,27 @@ function MainPin(props) {
             </ImageContainer>
         </ImageWrapper>
     );
-}
+};
+
+const ImageWrapper = styled.div`
+    display: inline-flex;
+    padding: 8px;
+`;
+
+const ImageContainer = styled.div`
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 236px;
+
+    img {
+        display: flex;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 16px;
+        object-fit: cover;
+    }
+`;
 
 export default MainPin;
-

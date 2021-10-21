@@ -10,6 +10,10 @@ import CommentContainer from "./CommentContainer";
 import CommentWrite from "./CommentWrite";
 import CommentList from "./CommentList";
 import DropDown from "./DropDown";
+import Header from "./Header";
+import LoginHeader from "./LoginHeader";
+import LoginMainboard from "./LoginMainboard";
+import Mainboard from "./Mainboard";
 
 export {
     PinImage,
@@ -24,4 +28,8 @@ export {
     CommentList,
     CommentWrite,
     DropDown,
+    Header,
+    LoginHeader,
+    LoginMainboard,
+    Mainboard,
 };

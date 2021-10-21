@@ -1,8 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { apis } from "../../lib/axios";
 import axios from "axios";
-import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
+import { getCookie } from "../../shared/Cookie";
 
 const GET_COMMENTS = "GET_COMMENTS";
 const ADD_COMMENT = "ADD_COMMENT";

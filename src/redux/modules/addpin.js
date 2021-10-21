@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { getCookie } from "../../shared/Cookie";
 import axios from "axios";
+
 const ADD_PIN = "ADD_PIN";
 
 const addPin = createAction(ADD_PIN, (pin) => ({ pin }));

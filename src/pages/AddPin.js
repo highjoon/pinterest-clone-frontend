@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Button, Flex } from "../elements";
-// import NewModal from "./NewModal";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-// import url from "../../../config";
 import { actionCreators as addPinCreators } from "../redux/modules/addpin";
-import { Controller, useForm } from "react-hook-form";
+import { Button, Flex } from "../elements";
+
 const AddPin = ({ history }) => {
     const [imgBase64, setImgBase64] = useState(""); // 파일 base64
     const [imgFile, setImgFile] = useState(null); //파일
@@ -21,10 +19,6 @@ const AddPin = ({ history }) => {
         formData.append("title", title);
         formData.append("desc", imgDes);
         formData.append("image", imgFile);
-
-        for (let form of formData) {
-            console.log(form);
-        }
 
         dispatch(addPinCreators.addPinAPI(formData));
     };

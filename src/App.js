@@ -1,17 +1,12 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
-import { history } from "./redux/configureStore.js";
-import { useDispatch, useSelector } from "react-redux";
-import Header from "./components/Header";
-import Mainboard from "./components/Mainboard.js";
-import Search from "./pages/Search";
+import { useDispatch } from "react-redux";
 import unsplash from "./api/unsplash";
-import LoginHeader from "./components/LoginHeader.js";
-import LoginMainboard from "./components/LoginMainboard.js";
 import { actionCreators as PinCreators } from "./redux/modules/pin.js";
-import { actionCreators as MainActions } from "./redux/modules/main.js";
-import { PinDetail, AddPin, MyPage } from "./pages";
+import { history } from "./redux/configureStore.js";
+import { Header, Mainboard, LoginHeader, LoginMainboard } from "./components";
+import { PinDetail, AddPin, MyPage, Search } from "./pages";
 
 function App() {
     const dispatch = useDispatch();
@@ -76,12 +71,9 @@ function App() {
         <React.Fragment>
             <ConnectedRouter history={history}>
                 <Route path="/" exact>
-                    {/* <LoginHeader onSubmit={onSearchSubmit} /> */}
                     <LoginHeader />
                     <LoginMainboard pins={pins} />
                 </Route>
-
-                {/* <Header onSubmit={onSearchSubmit} /> */}
                 <Route path="/main">
                     <Header onSubmit={onSearchSubmit} />
                     <Mainboard />

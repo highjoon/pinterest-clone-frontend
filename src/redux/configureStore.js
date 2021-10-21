@@ -3,26 +3,22 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 import User from "./modules/user";
-import pin from "./modules/pin";
-import comment from "./modules/comment";
+import Pin from "./modules/pin";
+import Comment from "./modules/comment";
 import Main from "./modules/main";
 import My from "./modules/my";
 import Search from "./modules/search";
 
-// import user from "./modules/user";
-
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-
-    my:My,
-    pin: pin,
-    comment: comment,
+    my: My,
+    pin: Pin,
+    comment: Comment,
     user: User,
     main: Main,
     search: Search,
     router: connectRouter(history),
-
 });
 
 const middlewares = [thunk.withExtraArgument({ history: history })];
@@ -30,16 +26,16 @@ const middlewares = [thunk.withExtraArgument({ history: history })];
 const env = process.env.NODE_ENV;
 
 if (env === "development") {
-  const { logger } = require("redux-logger");
-  middlewares.push(logger);
+    const { logger } = require("redux-logger");
+    middlewares.push(logger);
 }
 
 const composeEnhancers =
-  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-      })
-    : compose;
+    typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+              // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+          })
+        : compose;
 
 const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 

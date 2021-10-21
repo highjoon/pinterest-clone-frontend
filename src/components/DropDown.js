@@ -1,33 +1,65 @@
 import React from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Text } from "../elements";
 
 const DropDown = (props) => {
-    const { _ref, className, choose, imgURL } = props;
+    const { _ref, className, imgURL, type } = props;
+    const history = useHistory();
 
-    return (
-        <MenuWrapper>
-            <MenuContainer>
-                <Menu ref={_ref} className={className}>
-                    <ul>
-                        <li onClick={choose}>
-                            <Text margin="0" text_align="left">
-                                <DownloadLink href={imgURL}>
-                                    이미지 다운로드
-                                </DownloadLink>
-                            </Text>
-                        </li>
-                    </ul>
-                </Menu>
-            </MenuContainer>
-        </MenuWrapper>
-    );
+    const logOut = () => {
+        window.alert("로그아웃!");
+    };
+
+    if (type === "headerMenu") {
+        return (
+            <MenuWrapper>
+                <MenuContainer>
+                    <Menu ref={_ref} className={className} id="headerMenu">
+                        <ul>
+                            <li onClick={() => history.push("#")}>
+                                <Text margin="0" text_align="left">
+                                    마이페이지
+                                </Text>
+                            </li>
+                            <li onClick={logOut}>
+                                <Text margin="0" text_align="left">
+                                    로그아웃
+                                </Text>
+                            </li>
+                        </ul>
+                    </Menu>
+                </MenuContainer>
+            </MenuWrapper>
+        );
+    }
+    if (type !== "headerMenu") {
+        return (
+            <MenuWrapper>
+                <MenuContainer>
+                    <Menu ref={_ref} className={className}>
+                        <ul>
+                            <li>
+                                <Text margin="0" text_align="left">
+                                    <DownloadLink href={imgURL}>
+                                        이미지 다운로드
+                                    </DownloadLink>
+                                </Text>
+                            </li>
+                        </ul>
+                    </Menu>
+                </MenuContainer>
+            </MenuWrapper>
+        );
+    }
 };
 
 const MenuWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
     margin-top: 10px;
+    font-size: 16px;
+    color: black;
 `;
 
 const MenuContainer = styled.div`
@@ -76,6 +108,11 @@ const Menu = styled.nav`
     transform: translateY(-20px);
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
 
+    &#headerMenu {
+        top: 30px;
+        right: 0px;
+    }
+
     &.active {
         opacity: 1;
         visibility: visible;
@@ -94,8 +131,15 @@ const Menu = styled.nav`
         display: block;
         cursor: pointer;
 
-        &:hover {
-            border-radius: 16px;
+        &:first-child:hover {
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            background-color: #e2e2e2;
+        }
+
+        &:last-child:hover {
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
             background-color: #e2e2e2;
         }
     }

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Flex, Image } from "../elements";
 
 const PostWriterInfo = (props) => {
+    const { user } = props;
     return (
         <Flex width="100%" margin="20px auto" justify_content="flex-start">
             <Image
@@ -20,8 +21,7 @@ const PostWriterInfo = (props) => {
                 justify_content="flex-start"
                 align_items="start"
             >
-                <SpanText className="bold">TestUploader</SpanText>
-                <SpanText>팔로워 0명</SpanText>
+                <SpanText className="bold">{user}</SpanText>
             </Flex>
         </Flex>
     );
