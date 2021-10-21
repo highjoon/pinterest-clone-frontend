@@ -1,23 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { actionCreators as MainActions } from "../redux/modules/main";
-const Mainboard = (props) => {
+import { actionCreators as searchActions } from "../redux/modules/search";
+const Search = (props) => {
     const dispatch = useDispatch();
-
-    const mainPins = useSelector((state) => state.main.list);
-
-    console.log(mainPins);
-    let history = useHistory();
+    const history = useHistory();
+    const resultPins = useSelector((state) => state.search.pins);
 
     useEffect(() => {
-        dispatch(MainActions.getMainAPI());
+        // dispatch(searchActions.getSearchAPI(searchWord));
+        dispatch(searchActions.getSearchAPI(localStorage.getItem("word")));
     }, []);
+
     return (
         <Wrapper>
             <Container>
-                {mainPins.map((pin, index) => {
+                {resultPins.map((pin, index) => {
                     return (
                         <ImageWrapper>
                             <ImageContainer>
@@ -45,7 +44,7 @@ const Mainboard = (props) => {
     );
 };
 
-export default Mainboard;
+export default Search;
 
 const Wrapper = styled.div`
     background-color: white;

@@ -1,37 +1,37 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../lib/axios";
+import axios from "axios";
+import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 
-const SEARCH = "SEARCH";
+const SEARCH_PINS = "SEARCH_PINS";
 
-const getSearch = createAction(SEARCH, (word) => ({ word }));
+const getSearch = createAction(SEARCH_PINS, (pins, word) => ({ pins, word }));
 
 const initialState = {
-    pins: [
-        {
-            id: 15,
-            imgURL: "https://pinterestclonecoding.s3.ap-northeast-2.amazonaws.com/1634731226547.jpg",
-            title: "테스트 제목",
-            desc: "테스트 설명",
-            user: "테스트 유저",
-            board: "테스트 보드",
-        },
-        {
-            id: 17,
-            imgURL: "https://pinterestclonecoding.s3.ap-northeast-2.amazonaws.com/1634731226547.jpg",
-            title: "샐러드",
-            desc: "테스트 설명",
-            user: "테스트 유저",
-            board: "테스트 보드",
-        },
-    ],
+    pins: [],
+    word: null,
 };
 
 const getSearchAPI = (word) => {
     return (dispatch, getState, { history }) => {
-        apis.searchPin(word)
+        // apis.searchPin(word)
+        axios({
+            method: "GET",
+            url: `http://13.125.174.214/view/search/${word}`,
+            data: { word },
+            headers: {
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                authorization: `Bearer ${getCookie("user_login")}`,
+            },
+        })
             .then((res) => {
-                console.log(res.data);
+                const resultPins = res.data.pins;
+                dispatch(getSearch(resultPins, word));
+                localStorage.setItem("word", word);
+                history.push(`/view/search/${encodeURIComponent(word)}`);
             })
             .catch((err) => {
                 console.log(err);
@@ -41,9 +41,10 @@ const getSearchAPI = (word) => {
 
 export default handleActions(
     {
-        [SEARCH]: (state, action) =>
+        [SEARCH_PINS]: (state, action) =>
             produce(state, (draft) => {
                 draft.pins = action.payload.pins;
+                draft.word = action.payload.word;
             }),
     },
     initialState

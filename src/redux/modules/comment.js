@@ -1,6 +1,8 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../lib/axios";
+import axios from "axios";
+import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
 
 const GET_COMMENTS = "GET_COMMENTS";
 const ADD_COMMENT = "ADD_COMMENT";
@@ -43,7 +45,18 @@ const initialState = {
 
 const getCommentAPI = (id) => {
     return (dispatch, getState, { history }) => {
-        apis.getComment(id)
+        // apis.getComment(id)
+        axios({
+            method: "GET",
+            url: `http://13.125.174.214/comment/${id}`,
+            data: { id },
+            headers: {
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                authorization: `Bearer ${getCookie("user_login")}`,
+            },
+        })
             .then((res) => {
                 const comments = res.data.comments;
                 dispatch(getComment(comments));
@@ -56,7 +69,18 @@ const getCommentAPI = (id) => {
 
 const addCommentAPI = (comments) => {
     return (dispatch, getState, { history }) => {
-        apis.addComment(comments)
+        // apis.addComment(comments)
+        axios({
+            method: "POST",
+            url: `http://13.125.174.214/comment`,
+            data: comments,
+            headers: {
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                authorization: `Bearer ${getCookie("user_login")}`,
+            },
+        })
             .then((res) => {
                 const userName = res.data;
                 dispatch(addComment(comments, userName));
@@ -69,7 +93,18 @@ const addCommentAPI = (comments) => {
 
 const editCommentAPI = (id, comments) => {
     return (dispatch, getState, { history }) => {
-        apis.editComment(id, comments)
+        // apis.editComment(id, comments)
+        axios({
+            method: "PATCH",
+            url: `http://13.125.174.214/comment/${id}`,
+            data: comments,
+            headers: {
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                authorization: `Bearer ${getCookie("user_login")}`,
+            },
+        })
             .then((res) => {
                 dispatch(editComment(comments, id));
                 window.alert("수정 완료!");
@@ -82,7 +117,18 @@ const editCommentAPI = (id, comments) => {
 
 const deleteCommentAPI = (id) => {
     return (dispatch, getState, { history }) => {
-        apis.deleteComment(id)
+        // apis.deleteComment(id)
+        axios({
+            method: "DELETE",
+            url: `http://13.125.174.214/comment/${id}`,
+            data: {},
+            headers: {
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                authorization: `Bearer ${getCookie("user_login")}`,
+            },
+        })
             .then((res) => {
                 dispatch(deleteComment(id));
             })
@@ -94,7 +140,18 @@ const deleteCommentAPI = (id) => {
 
 const toggleLikeAPI = (id) => {
     return (dispatch, getState, { history }) => {
-        apis.toggleLike(id)
+        // apis.toggleLike(id)
+        axios({
+            method: "POST",
+            url: `http://13.125.174.214/comment/like/${id}`,
+            data: {},
+            headers: {
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                authorization: `Bearer ${getCookie("user_login")}`,
+            },
+        })
             .then((res) => {
                 dispatch(toggleLike(id));
             })

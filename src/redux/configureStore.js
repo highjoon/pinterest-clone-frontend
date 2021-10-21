@@ -6,6 +6,7 @@ import User from "./modules/user";
 import pin from "./modules/pin";
 import comment from "./modules/comment";
 import Main from "./modules/main";
+import Search from "./modules/search";
 // import user from "./modules/user";
 
 export const history = createBrowserHistory();
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     comment: comment,
     user: User,
     main: Main,
+    search: Search,
     router: connectRouter(history),
 });
 

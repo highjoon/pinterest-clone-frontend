@@ -19,10 +19,10 @@ const CommentEdit = (props) => {
             e.target.value = "";
         }
     };
+    console.log(id);
 
     const submitComment = () => {
         const newCommentObj = {
-            id,
             content: newComment.current.value,
         };
         dispatch(commentActions.editCommentAPI(id, newCommentObj));
