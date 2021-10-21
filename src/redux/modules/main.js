@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import { getCookie } from "../../shared/Cookie";
 import axios from "axios";
 
 
@@ -22,6 +23,12 @@ const getMainAPI = () => {
         data: {
       
         },
+        headers: {
+          "content-type": "application/json;charset=UTF-8",
+          accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+          authorization: `Bearer ${getCookie("user_login")}`,
+      },
       })
         .then((res) => {
         
@@ -29,6 +36,8 @@ const getMainAPI = () => {
          
         })
         .catch((err) => {
+          window.alert("잘못된 정보입니다")
+          history.push('/')
           console.log(err)
           
         });

@@ -100,11 +100,7 @@ const signupAPI = (value) => {
     axios({
       method: 'POST',
       url: 'http://13.125.174.214/user/signup',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
-      },
+    
       data: {
         email: value.email,
         password: value.password,
@@ -112,6 +108,12 @@ const signupAPI = (value) => {
       },
     })
       .then((res) => {
+        const jwtToken = res.data.token;
+        const _id = res.data.nickname;
+        
+        setCookie('user_login', jwtToken);
+        localStorage.setItem('user_name', _id);
+        
         console.log(res); // signup 정보 확인
         window.alert('축하합니다');
         history.push('/main');
