@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { actionCreators as searchActions } from "../redux/modules/search";
+import '../components/Mainboard.css'
 const Search = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -15,7 +16,7 @@ const Search = (props) => {
 
     return (
         <Wrapper>
-            <Container>
+            <Container className="mainboard__container">
                 {resultPins.map((pin, index) => {
                     return (
                         <ImageWrapper>
@@ -56,13 +57,12 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-    column-count: 5;
-    column-gap: 10px;
+   ;
 
     height: 100%;
     background-color: white;
     margin: 0 auto;
-    max-width: 1260px;
+ 
 `;
 
 const FloatButton = styled.button`

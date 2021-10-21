@@ -4,6 +4,7 @@ import Pin from "./Pin";
 import { FaAngleDown } from "react-icons/fa";
 import { Text } from "../elements";
 import SignupCard from "./SignupCard";
+import './Mainboard.css'
 const LoginMainboard = (props) => {
     let { pins } = props;
     const [viewLogin, setViewLogin] = useState(false);
@@ -22,7 +23,7 @@ const LoginMainboard = (props) => {
                 <PostTwo>식사 메뉴 아이디어를 찾아보세요</PostTwo>
             </MainPost>
             <Wrapper>
-                <Container>
+                <Container className="mainboard__container">
                     {pins.map((pin, index) => {
                         let { urls } = pin;
                         return <Pin key={index} urls={urls} />;
@@ -96,13 +97,12 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-    column-count: 5;
-    column-gap: 10px;
+    
 
     height: 100%;
     background-color: white;
     margin: 0 auto;
-    max-width: 1260px;
+    
 `;
 
 const MainPost = styled.div`

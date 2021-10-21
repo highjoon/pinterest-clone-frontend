@@ -25,7 +25,7 @@ function Header(props) {
                 </IconButton>
             </LogoWrapper>
             <HomePageButton>
-                <a href="/">홈</a>
+                <a href="/main">홈</a>
             </HomePageButton>
             {/* <FollowingButton>
             <a href = "/">홈</a>
