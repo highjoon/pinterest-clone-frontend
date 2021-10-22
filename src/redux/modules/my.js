@@ -5,10 +5,11 @@ import axios from "axios";
 
 const GET_MY = "GET_MY";
 
-const getMy = createAction(GET_MY, (list) => ({ list }));
+const getMy = createAction(GET_MY, (pins, nickName) => ({ pins, nickName }));
 
 const initialState = {
-    list: [],
+    pins: [],
+    nickName: null,
 };
 
 const getMyAPI = () => {
@@ -25,7 +26,10 @@ const getMyAPI = () => {
             },
         })
             .then((res) => {
-                dispatch(getMy(res.data.myBoard.Pins));
+                console.log(res.data);
+                const pins = res.data.myBoard.Pins;
+                const nickName = res.data.myBoard.nickname;
+                dispatch(getMy(pins, nickName));
             })
             .catch((err) => {
                 history.push("/mypage");
@@ -37,7 +41,8 @@ export default handleActions(
     {
         [GET_MY]: (state, action) =>
             produce(state, (draft) => {
-                draft.list = action.payload.list;
+                draft.pins = action.payload.pins;
+                draft.nickName = action.payload.nickName;
             }),
     },
     initialState
