@@ -2,14 +2,15 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
 import { getCookie } from "../../shared/Cookie";
-
+const DET_COMMENTS = "DET_COMMENTS";
 const GET_COMMENTS = "GET_COMMENTS";
 const ADD_COMMENT = "ADD_COMMENT";
 const EDIT_COMMENT = "EDIT_COMMENT";
 const DELETE_COMMENT = "DELETE_COMMENT";
 const TOGGLE_LIKE = "TOGGLE_LIKE";
 
-const getComment = createAction(GET_COMMENTS, (comments) => ({ comments }));
+const getComment = createAction(GET_COMMENTS, (comments) => ({ comments}));
+const getDomment = createAction(DET_COMMENTS, (list) => ({ list}));
 const addComment = createAction(ADD_COMMENT, (comments, userName, id) => ({
     comments,
     userName,
@@ -44,6 +45,7 @@ const initialState = {
             pin: 1,
         },
     ],
+    list: [],
 };
 
 const getCommentAPI = (id) => {
@@ -63,6 +65,13 @@ const getCommentAPI = (id) => {
             .then((res) => {
                 console.log(res.data);
                 const comments = res.data.comments;
+                const list = [];
+                for (let i=0;i<comments.length;i++)
+                {
+                    list[i]=res.data.comments[i].User.nickname;
+                }
+                console.log(list)
+                dispatch(getDomment(list));
                 dispatch(getComment(comments));
             })
             .catch((err) => {
@@ -172,6 +181,12 @@ export default handleActions(
         [GET_COMMENTS]: (state, action) =>
             produce(state, (draft) => {
                 draft.comments = action.payload.comments;
+               
+            }),
+            [DET_COMMENTS]: (state, action) =>
+            produce(state, (draft) => {
+                draft.list = action.payload.list;
+               
             }),
         [ADD_COMMENT]: (state, action) =>
             produce(state, (draft) => {
@@ -219,6 +234,7 @@ const actionCreators = {
     editCommentAPI,
     deleteCommentAPI,
     toggleLikeAPI,
+    getDomment,
 };
 
 export { actionCreators };

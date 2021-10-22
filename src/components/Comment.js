@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 import { Avatar, Icon } from "../elements";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { faHeart, faTools, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { CommentEdit, Modal } from ".";
 
 const Comment = (props) => {
-  const { comment, storedId, id } = props;
-  const name = localStorage.getItem("user_name");
+  const { comment, storedId, id,name} = props;
+  
+  // const name = useSelector((state)=>state.comment.list)
+//  let k;
+//   for(let i=0;i<name.length;i++)
+//   {
+//     if(id==name[i])
+//       k=name[i]
+//   }
+//   console.log(k)
+
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -37,7 +46,7 @@ const Comment = (props) => {
   return (
     <CommentBox>
       {/* (성민) 유저프로필 이미지 아이디에서 첫번쨰에서 불러옴         */}
-      <Avatar fontSize="1.5rem">{name.slice(0, 1).toUpperCase()}</Avatar>
+      <Avatar width="40px"  fontSize="1rem">{name}</Avatar>
       <CommentDetail>
         {isEdit ? (
           <CommentEdit
@@ -48,7 +57,7 @@ const Comment = (props) => {
         ) : (
           <CommentWrapper>
             <WriterInfo>
-              <Span className="writer">{comment.user}</Span>
+              <Span className="writer">{name}</Span>
             </WriterInfo>
             <Span>{comment.content}</Span>
           </CommentWrapper>
