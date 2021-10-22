@@ -1,7 +1,7 @@
-import { Pinterest } from "@material-ui/icons";
-import { IconButton } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
+import { Pinterest } from "@material-ui/icons";
+import { IconButton } from "@material-ui/core";
 
 const LoginHeader = (props) => {
     const scrollToBottom = () => {
@@ -13,7 +13,7 @@ const LoginHeader = (props) => {
     return (
         <Wrapper>
             <LogoWrapper>
-                <IconButton color="red">
+                <IconButton>
                     <Pinterest size="large" />
                     <div
                         style={{

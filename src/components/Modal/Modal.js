@@ -1,17 +1,10 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Portal } from "./";
-import { Flex, Button, Text } from "../elements";
+import Portal from "./Portal";
+import { Flex, Button, Text } from "../../elements";
 
-function Modal({
-    className,
-    onClose,
-    maskClosable,
-    closable,
-    visible,
-    children,
-}) {
+function Modal({ className, onClose, maskClosable, closable, visible, children }) {
     const onMaskClick = (e) => {
         if (e.target === e.currentTarget) onClose(e);
     };

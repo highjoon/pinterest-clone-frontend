@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Image } from "../elements";
+import { Flex, Image } from "../../elements";
 
 const PostImage = (props) => {
     const { className, imgURL } = props;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { actionCreators as searchActions } from "../redux/modules/search";
-import "../components/Mainboard.css";
+import "../components";
 
 const Search = (props) => {
     const dispatch = useDispatch();

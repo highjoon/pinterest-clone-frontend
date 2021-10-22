@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
@@ -11,9 +11,9 @@ import {
     Face,
     KeyboardArrowDown,
 } from "@material-ui/icons";
-import { useDetectOutsideClick } from "../hooks";
-import { actionCreators as searchActions } from "../redux/modules/search";
-import { DropDown } from "./";
+import { useDetectOutsideClick } from "../../hooks";
+import { actionCreators as searchActions } from "../../redux/modules/search";
+import { DropDown } from "../";
 
 const Header = (props) => {
     const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const Header = (props) => {
     return (
         <Wrapper>
             <LogoWrapper>
-                <IconButton>
+                <IconButton onClick={() => history.push("/")}>
                     <Pinterest />
                 </IconButton>
             </LogoWrapper>

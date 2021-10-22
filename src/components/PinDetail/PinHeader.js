@@ -1,12 +1,8 @@
 import React, { useRef } from "react";
-import { useDetectOutsideClick } from "../hooks";
-import {
-    faEllipsisH,
-    faUpload,
-    faLink,
-} from "@fortawesome/free-solid-svg-icons";
-import { Button, Flex, Icon } from "../elements";
-import { DropDown } from "./";
+import { useDetectOutsideClick } from "../../hooks";
+import { faEllipsisH, faUpload, faLink } from "@fortawesome/free-solid-svg-icons";
+import { Button, Flex, Icon } from "../../elements";
+import { DropDown } from "../";
 
 const PostHeader = (props) => {
     const { imgURL } = props;
@@ -69,10 +65,7 @@ const PostHeader = (props) => {
                     background_color="transparent"
                     border="none"
                 >
-                    <Icon
-                        className=" header__tools hover__bg"
-                        icon={faUpload}
-                    />
+                    <Icon className=" header__tools hover__bg" icon={faUpload} />
                 </Button>
                 <Button
                     width="48px"
@@ -82,11 +75,7 @@ const PostHeader = (props) => {
                     background_color="transparent"
                     border="none"
                 >
-                    <Icon
-                        className="header__tools"
-                        icon={faLink}
-                        _onClick={copyURL}
-                    />
+                    <Icon className="header__tools" icon={faLink} _onClick={copyURL} />
                 </Button>
             </Flex>
             <Flex width="50%" justify_content="flex-end">

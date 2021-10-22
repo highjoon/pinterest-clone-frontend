@@ -1,9 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { Text } from "../elements";
+import { Text } from "../../elements";
 import { useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as userActions } from "../../redux/modules/user";
+
 const DropDown = (props) => {
     const { _ref, className, imgURL, type } = props;
     const history = useHistory();
@@ -66,6 +67,7 @@ const MenuWrapper = styled.div`
     margin-top: 10px;
     font-size: 16px;
     color: black;
+    z-index: 5;
 `;
 
 const MenuContainer = styled.div`

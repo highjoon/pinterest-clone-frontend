@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { actionCreators as MainActions } from "../redux/modules/main";
+import { actionCreators as MainActions } from "../../redux/modules/main";
 import "./Mainboard.css";
 
 const Mainboard = (props) => {
@@ -14,12 +14,13 @@ const Mainboard = (props) => {
     useEffect(() => {
         dispatch(MainActions.getMainAPI());
     }, []);
+
     return (
         <Wrapper>
             <Container className="mainboard__container">
                 {mainPins.map((pin, index) => {
                     return (
-                        <ImageWrapper>
+                        <ImageWrapper key={index}>
                             <ImageContainer>
                                 <div
                                     onClick={() => {
@@ -62,34 +63,17 @@ const Container = styled.div`
     margin: 0 auto;
 `;
 
-const FloatButton = styled.button`
-    width: 50px;
-    height: 50px;
-
-    color: #ffffff;
-    box-sizing: border-box;
-    font-size: 36px;
-    font-weight: 800;
-    position: fixed;
-    bottom: 50px;
-    right: 30px;
-    text-align: center;
-    vertical-align: middle;
-    border: none;
-    border-radius: 50px;
-    &:hover {
-        cursor: pointer;
-    }
-`;
 const GloatButton = styled.button`
     width: 50px;
     height: 50px;
-
+    box-shadow: 0px 12px 33px -12px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 12px 33px -12px rgba(0, 0, 0, 0.5);
     background-size: cover;
-    color: #ffffff;
+    background-color: #fff;
+    color: black;
     box-sizing: border-box;
     font-size: 36px;
-    font-weight: 800;
+    font-weight: 600;
     position: fixed;
     bottom: 110px;
     right: 30px;
@@ -98,9 +82,34 @@ const GloatButton = styled.button`
     border: none;
     border-radius: 50px;
     &:hover {
+        background-color: #d0d0d0;
         cursor: pointer;
     }
 `;
+
+const FloatButton = styled.button`
+    width: 50px;
+    height: 50px;
+    box-shadow: 0px 12px 33px -12px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 12px 33px -12px rgba(0, 0, 0, 0.5);
+    color: black;
+    background-color: #fff;
+    box-sizing: border-box;
+    font-size: 36px;
+    font-weight: 600;
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    border-radius: 50px;
+    &:hover {
+        background-color: #d0d0d0;
+        cursor: pointer;
+    }
+`;
+
 const ImageWrapper = styled.div`
     display: inline-flex;
     padding: 8px;
@@ -110,14 +119,17 @@ const ImageContainer = styled.div`
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    cursor: pointer;
     width: 236px;
 
     img {
         display: flex;
         width: 100%;
-        cursor: pointer;
         border-radius: 16px;
         object-fit: cover;
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(60%);
+        }
     }
 `;

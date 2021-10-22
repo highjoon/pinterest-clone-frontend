@@ -14,12 +14,6 @@ function App() {
     const isLogin = useSelector((state) => state.user.is_login);
     // 로그인이 되어있으면 true, 안되어있으면 false
 
-    // const scrollToBottom = () =>
-    //     window.scrollTo({
-    //         top: document.documentElement.scrollHeight,
-    //         behavior: "smooth",
-    //     });
-
     useEffect(() => {
         getNewPins();
         dispatch(userActions.loginCheckAPI());
