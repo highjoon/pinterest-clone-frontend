@@ -44,11 +44,7 @@ const PinDetail = (props) => {
                     title={pinDetail.title}
                     desc={pinDetail.desc}
                 />
-                <PinContainer
-                    width="90%"
-                    flex_direction="column"
-                    align_items="center"
-                >
+                <PinContainer width="90%" flex_direction="column" align_items="center">
                     <PinWriterInfo user={pinWriter} />
                     <CommentContainer storedId={storedId} />
                 </PinContainer>

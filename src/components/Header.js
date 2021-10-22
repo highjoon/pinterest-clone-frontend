@@ -34,7 +34,7 @@ const Header = (props) => {
                     <Pinterest />
                 </IconButton>
             </LogoWrapper>
-            <HomePageButton onClick={() => history.push("/main")}>
+            <HomePageButton onClick={() => history.push("/")}>
                 <span>홈</span>
             </HomePageButton>
             <SearchWrapper>
@@ -43,10 +43,7 @@ const Header = (props) => {
                         <Search />
                     </IconButton>
                     <form>
-                        <input
-                            type="text"
-                            onChange={(e) => setInput(e.target.value)}
-                        />
+                        <input type="text" onChange={(e) => setInput(e.target.value)} />
                         <button type="submit" onClick={onSearchSubmit}></button>
                     </form>
                 </SearchBarWrapper>
