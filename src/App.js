@@ -82,7 +82,9 @@ function App() {
                     <Header onSubmit={onSearchSubmit} />
                     <Search />
                 </Route>
-                <Route path="/detail/:id" component={PinDetail} />
+
+                <Header onSubmit={onSearchSubmit} />
+                <Route path="/detail/:id" exact component={PinDetail} />
                 <Route path="/addpin" exact component={AddPin} />
                 <Route path="/mypage" exact component={MyPage} />
             </ConnectedRouter>

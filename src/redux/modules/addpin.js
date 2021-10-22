@@ -34,7 +34,6 @@ const addPinAPI = (formdata) => {
                 history.push("/main");
             })
             .catch((err) => {
-                // console.log(formData)
                 window.alert("핀 등록 실패");
                 console.log(err);
             });

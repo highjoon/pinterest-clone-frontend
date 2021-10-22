@@ -9,7 +9,6 @@ const LoginHeader = (props) => {
             top: document.documentElement.scrollHeight,
             behavior: "smooth",
         });
- 
     };
     return (
         <Wrapper>
@@ -64,10 +63,10 @@ const LoginHeader = (props) => {
                     </div>
                 </IconButton>
                 <HomePageButton>
-                    <a  onClick={scrollToBottom}>로그인</a>
+                    <a onClick={scrollToBottom}>로그인</a>
                 </HomePageButton>
                 <FollowingButton>
-                    <a  onClick={scrollToBottom}>가입하기</a>
+                    <a onClick={scrollToBottom}>가입하기</a>
                 </FollowingButton>
             </IconsWrapper>
         </Wrapper>

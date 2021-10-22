@@ -14,13 +14,15 @@ const CommentContainer = (props) => {
     let [is_drop, setIsDrop] = useState(true);
     let [icon_type, setIconType] = useState(faChevronDown);
 
-    const tempData = useSelector((state) => state.comment.comments);
-    const comments = tempData.slice();
+    // const tempData = useSelector((state) => state.comment.comments);
+    // const comments = tempData.slice();
+
+    const comments = useSelector((state) => state.comment.comments);
     const storedId = props.storedId;
 
     useEffect(() => {
         dispatch(commentActions.getCommentAPI(storedId));
-    }, [tempData]);
+    }, []);
 
     const dropComment = () => {
         is_drop ? setIsDrop(false) : setIsDrop(true);

@@ -37,7 +37,6 @@ const SignupCard = () => {
         }),
 
         onSubmit: (values) => {
-            console.log(values);
             dispatch(userActions.signupAPI(values));
             setLoginMode(true);
         },

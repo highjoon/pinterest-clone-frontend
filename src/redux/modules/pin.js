@@ -6,7 +6,10 @@ import { getCookie } from "../../shared/Cookie";
 const GET_PIN = "GET_PIN";
 const GET_ZAPPIN = "GET_ZAPPIN";
 
-const getPin = createAction(GET_PIN, (pinDetail) => ({ pinDetail }));
+const getPin = createAction(GET_PIN, (pinDetail, pinId) => ({
+    pinDetail,
+    pinId,
+}));
 const getZapPin = createAction(GET_ZAPPIN, (pin) => ({ pin }));
 
 const initialState = {
@@ -20,6 +23,7 @@ const initialState = {
         board: "임시 테스트 보드",
     },
     pin: [],
+    pinId: null,
 };
 
 const getPinAPI = (id) => {
@@ -38,7 +42,9 @@ const getPinAPI = (id) => {
         })
             .then((res) => {
                 const pinDetail = res.data.pinDetail;
-                dispatch(getPin(pinDetail));
+                const pinId = res.data.pinDetail.id;
+                localStorage.setItem("pinId", pinId);
+                dispatch(getPin(pinDetail, pinId));
             })
             .catch((err) => {
                 console.log(err);
@@ -51,6 +57,7 @@ export default handleActions(
         [GET_PIN]: (state, action) =>
             produce(state, (draft) => {
                 draft.pinDetail = action.payload.pinDetail;
+                draft.pinId = action.payload.pinId;
             }),
         [GET_ZAPPIN]: (state, action) =>
             produce(state, (draft) => {

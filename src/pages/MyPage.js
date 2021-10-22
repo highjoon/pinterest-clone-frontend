@@ -14,8 +14,6 @@ const MyPage = (props) => {
         dispatch(MyActions.getMyAPI());
     }, []);
 
-    console.log(myPins[0]);
-
     return (
         <Wrapper className="Wrapper">
             <TextInfo className="TextInfo">
