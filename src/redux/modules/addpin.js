@@ -31,7 +31,7 @@ const addPinAPI = (formdata) => {
                     })
                 );
                 window.alert("핀 등록 완료!");
-                history.push("/main");
+                history.push("/");
             })
             .catch((err) => {
                 window.alert("핀 등록 실패");
