@@ -4,6 +4,7 @@ import { Flex, Image } from "../elements";
 
 const PostWriterInfo = (props) => {
     const { user } = props;
+
     return (
         <Flex width="100%" margin="20px auto" justify_content="flex-start">
             <Image

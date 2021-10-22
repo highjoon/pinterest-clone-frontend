@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import unsplash from "./api/unsplash";
 import { actionCreators as PinCreators } from "./redux/modules/pin.js";
+import { actionCreators as userActions } from "./redux/modules/user";
 import { history } from "./redux/configureStore.js";
 import { Header, Mainboard, LoginHeader, LoginMainboard } from "./components";
 import { PinDetail, AddPin, MyPage, Search } from "./pages";
 
 function App() {
     const dispatch = useDispatch();
-    const scrollToBottom = () =>
-        window.scrollTo({
-            top: document.documentElement.scrollHeight,
-            behavior: "smooth",
-        });
-    //
+    const isLogin = useSelector((state) => state.user.is_login);
+
+    // const scrollToBottom = () =>
+    //     window.scrollTo({
+    //         top: document.documentElement.scrollHeight,
+    //         behavior: "smooth",
+    //     });
+
+    useEffect(() => {
+        getNewPins();
+        dispatch(userActions.loginCheckAPI());
+    }, []);
 
     const [pins, setNewpins] = React.useState([]);
 
@@ -63,27 +70,24 @@ function App() {
             dispatch(PinCreators.getZapPin(pinData));
         });
     };
-    React.useEffect(() => {
-        getNewPins();
-    }, []);
 
     return (
         <React.Fragment>
             <ConnectedRouter history={history}>
-                <Route path="/" exact>
+                {isLogin ? (
+                    <Header onSubmit={onSearchSubmit} />
+                ) : (
                     <LoginHeader />
+                )}
+                <Route path="/" exact>
                     <LoginMainboard pins={pins} />
                 </Route>
                 <Route path="/main">
-                    <Header onSubmit={onSearchSubmit} />
                     <Mainboard />
                 </Route>
                 <Route path="/view/search/:word" exact>
-                    <Header onSubmit={onSearchSubmit} />
                     <Search />
                 </Route>
-
-                <Header onSubmit={onSearchSubmit} />
                 <Route path="/detail/:id" exact component={PinDetail} />
                 <Route path="/addpin" exact component={AddPin} />
                 <Route path="/mypage" exact component={MyPage} />

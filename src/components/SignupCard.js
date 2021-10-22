@@ -9,7 +9,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { Flex, Text, Button, Input } from "../elements";
 import LoginForm from "./LoginForm";
 
-const SignupCard = () => {
+const SignupCard = (props) => {
     const [loginMode, setLoginMode] = useState(true);
     const dispatch = useDispatch();
     const idCheck = useSelector((state) => state.user.is_id);

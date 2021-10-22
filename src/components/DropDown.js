@@ -9,13 +9,13 @@ const DropDown = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const siteLogout = () => {
-        if (window.confirm('로그아웃 하시겠습니까?')) {
-          dispatch(userActions.logOut());
-          history.replace('/');
+        if (window.confirm("로그아웃 하시겠습니까?")) {
+            dispatch(userActions.logOut());
+            history.replace("/");
         } else {
-          console.log('로그인 유지');
+            console.log("로그인 유지");
         }
-      };
+    };
 
     if (type === "headerMenu") {
         return (
