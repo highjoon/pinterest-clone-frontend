@@ -18,7 +18,7 @@
 ## 프로젝트 설명
 
 <img width="1262" alt="스크린샷 2021-10-22 오후 4 16 00" src="https://user-images.githubusercontent.com/85213997/138410284-05feec46-2388-40c2-b070-9cf8235102f7.png">
-
+### 시연영상 [Youtube](https://www.youtube.com/watch?v=19ARAJSV664)
 
 다양한 기능이 있는 Pinterest를 클론코딩했습니다.
 
