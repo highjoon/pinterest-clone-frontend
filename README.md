@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# PINTEREST 클론코딩
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/85213997/138467799-61c667d8-67b9-408f-89a3-325dbac5011a.gif)
 
-In the project directory, you can run:
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 목차
+### 1. [프로젝트 설명](#프로젝트-설명)<br/>
+### 2. [팀원소개](#팀원소개)<br/>
+### 3. [사용기술](#-tools)<br/>
+### 4. [배운 점](#배운-점)<br/>
+### 5. [API설계](#API설계)<br/>
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+## 프로젝트 설명
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img width="1262" alt="스크린샷 2021-10-22 오후 4 16 00" src="https://user-images.githubusercontent.com/85213997/138410284-05feec46-2388-40c2-b070-9cf8235102f7.png">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+다양한 기능이 있는 Pinterest를 클론코딩했습니다.
 
-### `yarn eject`
+## 팀원소개
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### FRONT END
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 이수창(https://github.com/eternalclash)
+- 윤상준(https://github.com/highjoon)
+- 이성민(https://github.com/sungminleeme)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### BACK END
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 황창환(https://github.com/changchanghwang)
+- 정창우(https://github.com/changpro1)
 
-## Learn More
+## 🛠 Tools
+- React
+- Redux
+- styled-components
+- Node.js
+- Express
+- MySQL
+- AWS S3
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 배운 점
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## API설계
+### [전체 API설계](https://www.notion.so/hanghae99clone9/9-de04875486c24c6383d239aaab35ba70)
+![스크린샷 2021-10-22 오후 3 59 41](https://user-images.githubusercontent.com/85213997/138408067-5c0a7209-385f-4dda-a5aa-1ceaed5964fa.png)
