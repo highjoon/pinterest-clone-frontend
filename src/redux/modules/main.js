@@ -15,7 +15,7 @@ const getMainAPI = () => {
     return function (dispatch, getState, { history }) {
         axios({
             method: "GET",
-            url: `http://13.125.174.214/view/main`,
+            url: `http://3.35.219.78/view/main`,
             data: {},
             headers: {
                 "content-type": "application/json;charset=UTF-8",

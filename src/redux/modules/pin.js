@@ -38,7 +38,7 @@ const getPinAPI = (id) => {
         // apis.getPin(id)
         axios({
             method: "GET",
-            url: `http://13.125.174.214/view/detail/${id}`,
+            url: `http://3.35.219.78/view/detail/${id}`,
             data: { id },
             headers: {
                 "content-type": "application/json;charset=UTF-8",

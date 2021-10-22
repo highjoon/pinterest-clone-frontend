@@ -22,7 +22,10 @@ const editComment = createAction(EDIT_COMMENT, (comment, commentId) => ({
 const deleteComment = createAction(DELETE_COMMENT, (commentId) => ({
     commentId,
 }));
-const toggleLike = createAction(TOGGLE_LIKE, (commentId) => ({ commentId }));
+const toggleLike = createAction(TOGGLE_LIKE, (commentId, commentLike) => ({
+    commentId,
+    commentLike,
+}));
 
 const initialState = {
     comments: [
@@ -48,7 +51,7 @@ const getCommentAPI = (id) => {
         // apis.getComment(id)
         axios({
             method: "GET",
-            url: `http://13.125.174.214/comment/${id}`,
+            url: `http://3.35.219.78/comment/${id}`,
             data: { id },
             headers: {
                 "content-type": "application/json;charset=UTF-8",
@@ -58,6 +61,7 @@ const getCommentAPI = (id) => {
             },
         })
             .then((res) => {
+                console.log(res.data);
                 const comments = res.data.comments;
                 dispatch(getComment(comments));
             })
@@ -72,7 +76,7 @@ const addCommentAPI = (comments) => {
         // apis.addComment(comments)
         axios({
             method: "POST",
-            url: `http://13.125.174.214/comment`,
+            url: `http://3.35.219.78/comment`,
             data: comments,
             headers: {
                 "content-type": "application/json;charset=UTF-8",
@@ -97,7 +101,7 @@ const editCommentAPI = (id, comments) => {
         // apis.editComment(id, comments)
         axios({
             method: "PATCH",
-            url: `http://13.125.174.214/comment/${id}`,
+            url: `http://3.35.219.78/comment/${id}`,
             data: comments,
             headers: {
                 "content-type": "application/json;charset=UTF-8",
@@ -120,7 +124,7 @@ const deleteCommentAPI = (id) => {
         // apis.deleteComment(id)
         axios({
             method: "DELETE",
-            url: `http://13.125.174.214/comment/${id}`,
+            url: `http://3.35.219.78/comment/${id}`,
             data: {},
             headers: {
                 "content-type": "application/json;charset=UTF-8",
@@ -143,7 +147,7 @@ const toggleLikeAPI = (id) => {
         // apis.toggleLike(id)
         axios({
             method: "POST",
-            url: `http://13.125.174.214/comment/like/${id}`,
+            url: `http://3.35.219.78/comment/like/${id}`,
             data: {},
             headers: {
                 "content-type": "application/json;charset=UTF-8",
@@ -153,7 +157,9 @@ const toggleLikeAPI = (id) => {
             },
         })
             .then((res) => {
-                dispatch(toggleLike(id));
+                let commentLike = res.data.likeNum ? 1 : -1;
+                console.log(commentLike);
+                dispatch(toggleLike(id, commentLike));
             })
             .then((err) => {
                 console.log(err);
@@ -200,10 +206,8 @@ export default handleActions(
                 let commentIdx = draft.comments.findIndex(
                     (comment) => comment.id === action.payload.commentId
                 );
-                draft.comments[commentIdx].likeNum = draft.comments[commentIdx]
-                    .likeNum
-                    ? draft.comments[commentIdx].likeNum - 1
-                    : draft.comments[commentIdx].likeNum + 1;
+                draft.comments[commentIdx].likeNum +=
+                    action.payload.commentLike;
             }),
     },
     initialState

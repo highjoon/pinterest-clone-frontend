@@ -26,7 +26,7 @@ const loginAPI = (value) => {
     return function (dispatch, getState, { history }) {
         axios({
             method: "POST",
-            url: "http://13.125.174.214/user/login",
+            url: "http://3.35.219.78/user/login",
             data: {
                 email: value.email,
                 password: value.password,
@@ -63,7 +63,7 @@ const loginActionAPI = (email) => {
     return function (dispatch, getState, { history }) {
         axios({
             method: "GET",
-            url: `http://13.125.174.214/user/login/${email}`,
+            url: `http://3.35.219.78/user/login/${email}`,
             data: {},
         })
             .then((res) => {
@@ -90,7 +90,7 @@ const signupAPI = (value) => {
     return function (dispatch, getState, { history }) {
         axios({
             method: "POST",
-            url: "http://13.125.174.214/user/signup",
+            url: "http://3.35.219.78/user/signup",
             data: {
                 email: value.email,
                 password: value.password,
