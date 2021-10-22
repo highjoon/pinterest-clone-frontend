@@ -57,7 +57,7 @@ const Header = (props) => {
                     <Textsms />
                 </IconButton>
 
-                <IconButton>
+                <IconButton onClick={() => history.push("/mypage")}>
                     <Face />
                 </IconButton>
 

@@ -9,7 +9,8 @@ import { actionCreators as MyActions } from "../redux/modules/my";
 const MyPage = (props) => {
     let history = useHistory();
     const dispatch = useDispatch();
-    const myPins = useSelector((state) => state.my.list);
+    const myPins = useSelector((state) => state.my.pins);
+    const myNick = useSelector((state) => state.my.nickName);
     const name = localStorage.getItem("user_name");
 
     useEffect(() => {
@@ -24,35 +25,10 @@ const MyPage = (props) => {
                 </Avatar>
             </Flex>
             <TextInfo className="TextInfo">
-                <h1>항해99 9조</h1>
-                <span>팔로잉 0명</span>
+                <h1>{myNick}</h1>
             </TextInfo>
 
-            <Flex className="Btn__Container" justify_content="space-between">
-                <Flex className="Buttons">
-                    <Button
-                        width="48px"
-                        height="48px"
-                        padding="0"
-                        font_size="20px"
-                        color="black"
-                        background_color="transparent"
-                        border="none"
-                    >
-                        <Icon className=" header__tools hover__bg" icon={faPen} />
-                    </Button>
-                    <Button
-                        width="48px"
-                        height="48px"
-                        padding="0"
-                        font_size="20px"
-                        color="black"
-                        background_color="transparent"
-                        border="none"
-                    >
-                        <Icon className=" header__tools hover__bg" icon={faUpload} />
-                    </Button>
-                </Flex>
+            <Flex className="Btn__Container" width="95%" justify_content="flex-start">
                 <Flex className="Buttons">
                     <Button
                         width="48px"
@@ -85,7 +61,11 @@ const MyPage = (props) => {
                         <ImageWrapper>
                             <ImageContainer>
                                 <div>
-                                    <img src={pin.imgURL} alt="pin" />
+                                    <img
+                                        src={pin.imgURL}
+                                        alt="pin"
+                                        onClick={() => history.push(`/detail/${pin.id}`)}
+                                    />
                                 </div>
                             </ImageContainer>
                         </ImageWrapper>
@@ -105,24 +85,19 @@ const MyPage = (props) => {
     );
 };
 export default MyPage;
+
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     background-color: white;
     width: 100%;
     height: 100%;
+    margin: 0 auto;
     margin-top: 15px;
 `;
-// const Flexbox = styled.div`
-//   background-color: white;
-//   display: flex;
-//   justify-content: center;
-//   width: 100%;
-//   height: 100%;
-//   margin-top: 15px;
-//   position: fixed;
-// `;
+
 const TextInfo = styled.div`
     width: 100%;
 
@@ -149,7 +124,6 @@ const GloatButton = styled.button`
     box-sizing: border-box;
     font-size: 36px;
     font-weight: 600;
-    /* font-weight: 800; */
     position: fixed;
     bottom: 110px;
     right: 30px;
@@ -173,7 +147,6 @@ const FloatButton = styled.button`
     box-sizing: border-box;
     font-size: 36px;
     font-weight: 600;
-    /* font-weight: 800; */
     position: fixed;
     bottom: 50px;
     right: 30px;
@@ -209,5 +182,8 @@ const ImageContainer = styled.div`
         cursor: pointer;
         border-radius: 16px;
         object-fit: cover;
+        &:hover {
+            filter: brightness(60%);
+        }
     }
 `;
