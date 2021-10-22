@@ -20,6 +20,7 @@ const Input = (props) => {
         _ref,
         _onKeyPress,
         _onBlur,
+        defaultValue,
     } = props;
     const styles = {
         width,
@@ -29,6 +30,7 @@ const Input = (props) => {
         border,
         border_radius,
         font_size,
+        defaultValue,
     };
 
     return (

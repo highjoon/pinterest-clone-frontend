@@ -42,7 +42,7 @@ const LoginForm = () => {
                     type="text"
                     _onChange={formik.handleChange}
                     value={formik.values.email}
-                    placeholder={loginName}
+                     placeholder="아이디를 입력하세요"
                 />
                 {formik.touched.email && formik.errors.email ? (
                     <Text margin="5px 0" color="#e60023">

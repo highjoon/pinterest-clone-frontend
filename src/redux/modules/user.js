@@ -129,7 +129,9 @@ export default handleActions(
         [LOG_OUT]: (state, action) =>
             produce(state, (draft) => {
                 deleteCookie("user_login");
+                deleteCookie("ugid")
                 localStorage.removeItem("user_name");
+                localStorage.removeItem("word");
                 draft.user = null;
                 draft.is_login = false;
             }),
