@@ -4,37 +4,30 @@ import { useDispatch } from "react-redux";
 import { Image, Icon } from "../elements";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { faHeart, faTools, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { CommentEdit } from ".";
+import { CommentEdit, Modal } from ".";
 
 const Comment = (props) => {
     const { comment, storedId, id } = props;
+
     const dispatch = useDispatch();
     const [isEdit, setIsEdit] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
 
     const activateEdit = (e) => {
         setIsEdit(true);
     };
+
     const deActivateEdit = (e) => {
         setIsEdit(false);
     };
 
-    const deleteComment = (e) => {
-        let targetId = "";
-        switch (e.target.nodeName) {
-            case "path":
-                targetId = e.target.parentNode.attributes.id.value;
-                break;
-            case "DIV":
-                targetId = e.target.children[0].attributes.id.value;
-                break;
-            case "svg":
-                targetId = e.target.attributes.id.value;
-                break;
-            default:
-                targetId = null;
-                break;
-        }
-        dispatch(commentActions.deleteCommentAPI(Number(targetId)));
+    const openModal = () => {
+        setModalVisible(true);
+    };
+
+    const closeModal = (isDelete) => {
+        if (isDelete) dispatch(commentActions.deleteCommentAPI(id));
+        setModalVisible(false);
     };
 
     const toggleLike = () => {
@@ -66,6 +59,7 @@ const Comment = (props) => {
                         <Span>{comment.content}</Span>
                     </CommentWrapper>
                 )}
+
                 <Tools>
                     <Icon
                         className="tool hover__bg"
@@ -86,8 +80,18 @@ const Comment = (props) => {
                         className="tool hover__bg"
                         id={comment.id}
                         icon={faTrash}
-                        _onClick={deleteComment}
+                        _onClick={openModal}
                     />
+                    {modalVisible && (
+                        <Modal
+                            visible={modalVisible}
+                            closable={true}
+                            maskClosable={true}
+                            onClose={closeModal}
+                        >
+                            계속할까요?
+                        </Modal>
+                    )}
                 </Tools>
             </CommentDetail>
         </CommentBox>

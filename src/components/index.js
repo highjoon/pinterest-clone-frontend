@@ -14,6 +14,8 @@ import Header from "./Header";
 import LoginHeader from "./LoginHeader";
 import LoginMainboard from "./LoginMainboard";
 import Mainboard from "./Mainboard";
+import Modal from "./Modal";
+import Portal from "./Portal";
 
 export {
     PinImage,
@@ -32,4 +34,6 @@ export {
     LoginHeader,
     LoginMainboard,
     Mainboard,
+    Modal,
+    Portal,
 };

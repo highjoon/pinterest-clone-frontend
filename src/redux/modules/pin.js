@@ -6,10 +6,15 @@ import { getCookie } from "../../shared/Cookie";
 const GET_PIN = "GET_PIN";
 const GET_ZAPPIN = "GET_ZAPPIN";
 
-const getPin = createAction(GET_PIN, (pinDetail, pinId) => ({
-    pinDetail,
-    pinId,
-}));
+const getPin = createAction(
+    GET_PIN,
+    (pinDetail, pinId, pinWriter, pinBoard) => ({
+        pinDetail,
+        pinId,
+        pinWriter,
+        pinBoard,
+    })
+);
 const getZapPin = createAction(GET_ZAPPIN, (pin) => ({ pin }));
 
 const initialState = {
@@ -24,6 +29,8 @@ const initialState = {
     },
     pin: [],
     pinId: null,
+    pinWriter: null,
+    pinBoard: null,
 };
 
 const getPinAPI = (id) => {
@@ -43,8 +50,10 @@ const getPinAPI = (id) => {
             .then((res) => {
                 const pinDetail = res.data.pinDetail;
                 const pinId = res.data.pinDetail.id;
+                const pinWriter = res.data.pinDetail.User.nickname;
+                const pinBoard = res.data.pinDetail.Board.boardName;
                 localStorage.setItem("pinId", pinId);
-                dispatch(getPin(pinDetail, pinId));
+                dispatch(getPin(pinDetail, pinId, pinWriter, pinBoard));
             })
             .catch((err) => {
                 console.log(err);
@@ -58,6 +67,8 @@ export default handleActions(
             produce(state, (draft) => {
                 draft.pinDetail = action.payload.pinDetail;
                 draft.pinId = action.payload.pinId;
+                draft.pinWriter = action.payload.pinWriter;
+                draft.pinBoard = action.payload.pinBoard;
             }),
         [GET_ZAPPIN]: (state, action) =>
             produce(state, (draft) => {

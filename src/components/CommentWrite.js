@@ -15,7 +15,7 @@ const CommentWrite = (props) => {
     const activateInput = (e) => setIsActive(true);
     const deActivateInput = (e) => {
         if (window.confirm("정말로 취소하시겠습니까?")) {
-            commentText = "";
+            commentText.current.value = "";
             setIsActive(false);
         }
     };

@@ -12,12 +12,8 @@ const FIND_USER = "FIND_USER";
 const FIND_LOGIN = "FIND_LOGIN";
 const logIn = createAction(LOG_IN, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
-const loginCheck = createAction(LOGIN_CHECK, (cookie) => ({
-    cookie,
-}));
-
+const loginCheck = createAction(LOGIN_CHECK, (is_login) => ({ is_login }));
 const findLogin = createAction(FIND_LOGIN, (loginId) => ({ loginId }));
-
 const findUser = createAction(FIND_USER, (is_id) => ({ is_id }));
 const initialState = {
     user: [],
@@ -56,10 +52,6 @@ const loginAPI = (value) => {
                 );
                 window.alert("로그인 되었습니다!");
                 history.push("/main");
-                // }
-                // else {
-                //   window.alert('ID를 다시 확인해주세요');
-                // }
             })
             .catch((err) => {
                 console.log(err);
@@ -81,6 +73,16 @@ const loginActionAPI = (email) => {
             .catch((err) => {
                 dispatch(findUser(false));
             });
+    };
+};
+
+const loginCheckAPI = () => {
+    return (dispatch, getState, { history }) => {
+        if (getCookie("user_login")) {
+            dispatch(loginCheck(true));
+        } else {
+            dispatch(logOut());
+        }
     };
 };
 
@@ -129,7 +131,7 @@ export default handleActions(
         [LOG_OUT]: (state, action) =>
             produce(state, (draft) => {
                 deleteCookie("user_login");
-                deleteCookie("ugid")
+                deleteCookie("ugid");
                 localStorage.removeItem("user_name");
                 localStorage.removeItem("word");
                 draft.user = null;
@@ -137,7 +139,7 @@ export default handleActions(
             }),
         [LOGIN_CHECK]: (state, action) =>
             produce(state, (draft) => {
-                draft.is_login = action.payload.cookie;
+                draft.is_login = action.payload.is_login;
             }),
         [GET_USER]: (state, action) =>
             produce(state, (draft) => {
@@ -165,7 +167,7 @@ export default handleActions(
 const actionCreators = {
     logIn,
     logOut,
-    loginCheck,
+    loginCheckAPI,
     loginAPI,
     signupAPI,
     loginActionAPI,

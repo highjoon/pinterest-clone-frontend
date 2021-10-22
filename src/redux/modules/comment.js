@@ -108,7 +108,6 @@ const editCommentAPI = (id, comments) => {
         })
             .then((res) => {
                 dispatch(editComment(comments, id));
-                window.alert("수정 완료!");
             })
             .catch((err) => {
                 console.log(err);
