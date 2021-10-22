@@ -82,6 +82,18 @@ const Wrapper = styled.div`
     padding: 12px 4px 4px 16px;
     background-color: white;
     color: black;
+
+    ${({ theme }) => theme.device.desktop} {
+        padding: 10px 4px 10px 10px;
+    }
+
+    ${({ theme }) => theme.device.tablet} {
+        padding: 10px 50px 10px 10px;
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        min-width: 30px;
+    }
 `; //전체 래핑하는 것
 
 const LogoWrapper = styled.div`
@@ -99,6 +111,14 @@ const HomeButtons = styled.div`
     border-radius: 24px;
     cursor: pointer;
     align-items: center;
+
+    ${({ theme }) => theme.device.tablet} {
+        display: none;
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        display: none;
+    }
 `;
 
 const HomePageButton = styled(HomeButtons)`
@@ -145,4 +165,8 @@ const SearchBarWrapper = styled.div`
     }
 `;
 
-const IconsWrapper = styled.div``;
+const IconsWrapper = styled.div`
+    ${({ theme }) => theme.device.mobile} {
+        display: none;
+    }
+`;

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { faPen, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { Button, Flex, Icon, Avatar } from "../elements";
 import { actionCreators as MyActions } from "../redux/modules/my";
+import { MainboardCss } from "../components";
 
 const MyPage = (props) => {
     let history = useHistory();

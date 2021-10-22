@@ -7,8 +7,8 @@ import { faHeart, faTools, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { CommentEdit, Modal } from "..";
 
 const Comment = (props) => {
-    const { comment, storedId, id } = props;
-    const name = localStorage.getItem("user_name");
+    const { comment, storedId, id, name } = props;
+    // const name = localStorage.getItem("user_name");
     const dispatch = useDispatch();
     const [isEdit, setIsEdit] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
@@ -37,7 +37,9 @@ const Comment = (props) => {
     return (
         <CommentBox>
             {/* (성민) 유저프로필 이미지 아이디에서 첫번쨰에서 불러옴         */}
-            <Avatar fontSize="1.5rem">{name.slice(0, 1).toUpperCase()}</Avatar>
+            <Avatar width="48px" fontSize="1rem">
+                {name}
+            </Avatar>
             <CommentDetail>
                 {isEdit ? (
                     <CommentEdit
@@ -48,7 +50,7 @@ const Comment = (props) => {
                 ) : (
                     <CommentWrapper>
                         <WriterInfo>
-                            <Span className="writer">{comment.user}</Span>
+                            <Span className="writer">{name}</Span>
                         </WriterInfo>
                         <Span>{comment.content}</Span>
                     </CommentWrapper>

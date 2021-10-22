@@ -1,6 +1,6 @@
 import React from "react";
-import { Flex } from "../elements";
-import { Comment } from "./";
+import { Flex } from "../../elements";
+import { Comment } from "../";
 import { useSelector } from "react-redux";
 const CommentList = (props) => {
     const { hidden, comments, storedId } = props;

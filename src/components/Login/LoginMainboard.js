@@ -56,16 +56,19 @@ const LoginMainboard = (props) => {
             {viewLogin && (
                 <Drapper>
                     <FlexBox
+                        className=".mainboard__container"
                         style={{
                             transform: `translateY(40px)`,
                         }}
                     >
                         <div
+                            className="login"
                             style={{
                                 fontSize: "40px",
                                 margin: "7px 0px 1.8px 3.6px",
                                 color: "#fff",
                                 fontWeight: "700",
+                                padding: "0px 10rem 0px 0px",
                             }}
                         >
                             가입하여 더 많은 아이디어를
@@ -106,7 +109,7 @@ const FlexBox = styled.div`
     overflow: hidden;
     width: 1318px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     z-index: 9999;
 `;
 

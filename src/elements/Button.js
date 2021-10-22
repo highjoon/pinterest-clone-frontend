@@ -93,6 +93,9 @@ const DefaultBtn = styled.button`
     }
 
     &.saveBtn {
+        /* ${({ theme }) => theme.device.desktop} {
+            width: 100%;
+        } */
         &:hover {
             background-color: #ad081b;
         }
