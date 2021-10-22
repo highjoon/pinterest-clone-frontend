@@ -10,9 +10,10 @@ const DELETE_COMMENT = "DELETE_COMMENT";
 const TOGGLE_LIKE = "TOGGLE_LIKE";
 
 const getComment = createAction(GET_COMMENTS, (comments) => ({ comments }));
-const addComment = createAction(ADD_COMMENT, (comments, userName) => ({
+const addComment = createAction(ADD_COMMENT, (comments, userName, id) => ({
     comments,
     userName,
+    id,
 }));
 const editComment = createAction(EDIT_COMMENT, (comment, commentId) => ({
     comment,
@@ -81,8 +82,9 @@ const addCommentAPI = (comments) => {
             },
         })
             .then((res) => {
-                const userName = res.data;
-                dispatch(addComment(comments, userName));
+                const userName = res.data.user;
+                const commentId = res.data.comment;
+                dispatch(addComment(comments, userName, commentId));
             })
             .catch((err) => {
                 console.log(err);
@@ -168,10 +170,13 @@ export default handleActions(
             }),
         [ADD_COMMENT]: (state, action) =>
             produce(state, (draft) => {
-                draft.comments.push({
+                const commentObj = {
                     ...action.payload.comments,
-                    ...action.payload.userName,
-                });
+                    id: action.payload.id,
+                    likeNum: 0,
+                    user: action.payload.userName,
+                };
+                draft.comments.push(commentObj);
             }),
         [EDIT_COMMENT]: (state, action) =>
             produce(state, (draft) => {

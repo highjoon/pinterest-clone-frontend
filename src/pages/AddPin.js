@@ -14,7 +14,6 @@ const AddPin = ({ history }) => {
     const dispatch = useDispatch();
 
     const SubmitAddPin = () => {
-        console.log(imgFile);
         const formData = new FormData();
         formData.append("title", title);
         formData.append("desc", imgDes);
@@ -25,19 +24,16 @@ const AddPin = ({ history }) => {
 
     const fileChangeHandler = (e) => {
         const files = e.target.files;
-        console.log(files);
         setUploadedfile(files[0]);
     };
 
     const titleChangeHandler = (e) => {
         const newTitle = e.target.value;
-        console.log(newTitle);
         setTitle(newTitle);
     };
 
     const desChangeHandler = (e) => {
         const description = e.target.value;
-        console.log(description);
         setImgDes(description);
     };
 

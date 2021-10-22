@@ -43,9 +43,6 @@ const loginAPI = (value) => {
             },
         })
             .then((res) => {
-                // if (res.data.token != null) {
-                console.log(res.data);
-
                 const jwtToken = res.data.token;
                 const _id = res.data.nickname;
 
@@ -143,8 +140,6 @@ export default handleActions(
         [GET_USER]: (state, action) =>
             produce(state, (draft) => {
                 draft.is_exist = action.payload.user;
-                console.log(action.payload);
-                console.log(action.payload.user);
             }),
         [SET_USER]: (state, action) =>
             produce(state, (draft) => {

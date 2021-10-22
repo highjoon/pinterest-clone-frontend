@@ -19,7 +19,6 @@ const CommentEdit = (props) => {
             e.target.value = "";
         }
     };
-    console.log(id);
 
     const submitComment = () => {
         const newCommentObj = {
