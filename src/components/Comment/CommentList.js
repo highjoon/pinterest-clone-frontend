@@ -1,6 +1,6 @@
 import React from "react";
-import { Flex } from "../elements";
-import { Comment } from "./";
+import { Flex } from "../../elements";
+import { Comment } from "..";
 
 const CommentList = (props) => {
     const { hidden, comments, storedId } = props;

@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Flex, Text, Icon } from "../elements";
-import { actionCreators as commentActions } from "../redux/modules/comment";
-import {
-    faChevronDown,
-    faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { CommentWrite } from "./";
+import { Flex, Text, Icon } from "../../elements";
+import { actionCreators as commentActions } from "../../redux/modules/comment";
+import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { CommentWrite } from "..";
 
 const CommentContainer = (props) => {
     const dispatch = useDispatch();
@@ -57,17 +54,9 @@ const CommentContainer = (props) => {
                 />
             </Flex>
             {is_drop ? (
-                <CommentWrite
-                    hidden={false}
-                    comments={comments}
-                    storedId={storedId}
-                />
+                <CommentWrite hidden={false} comments={comments} storedId={storedId} />
             ) : (
-                <CommentWrite
-                    hidden={true}
-                    comments={comments}
-                    storedId={storedId}
-                />
+                <CommentWrite hidden={true} comments={comments} storedId={storedId} />
             )}
         </Flex>
     );

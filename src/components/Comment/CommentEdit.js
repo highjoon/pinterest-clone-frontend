@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { Button } from "../elements";
-import { actionCreators as commentActions } from "../redux/modules/comment";
+import { Button } from "../../elements";
+import { actionCreators as commentActions } from "../../redux/modules/comment";
 
 const CommentEdit = (props) => {
     const { _deActivateEdit, id } = props;
@@ -30,11 +30,7 @@ const CommentEdit = (props) => {
 
     return (
         <EditForm>
-            <EditInput
-                type="text"
-                ref={newComment}
-                onKeyPress={onEnterSubmit}
-            />
+            <EditInput type="text" ref={newComment} onKeyPress={onEnterSubmit} />
             <BtnContainer>
                 <Button
                     className="submitBtn"
