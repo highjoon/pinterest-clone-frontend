@@ -17,7 +17,7 @@ const getSearchAPI = (word) => {
         // apis.searchPin(word)
         axios({
             method: "GET",
-            url: `http://13.125.174.214/view/search/${word}`,
+            url: `http://3.35.219.78/view/search/${word}`,
             data: { word },
             headers: {
                 "content-type": "application/json;charset=UTF-8",
