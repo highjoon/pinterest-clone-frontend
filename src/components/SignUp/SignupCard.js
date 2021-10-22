@@ -5,9 +5,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Pinterest } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
-import { actionCreators as userActions } from "../redux/modules/user";
-import { Flex, Text, Button, Input } from "../elements";
-import LoginForm from "./LoginForm";
+import { actionCreators as userActions } from "../../redux/modules/user";
+import { Flex, Text, Button, Input } from "../../elements";
+import { LoginForm } from "../";
 
 const SignupCard = (props) => {
     const [loginMode, setLoginMode] = useState(true);
@@ -23,9 +23,7 @@ const SignupCard = (props) => {
         validationSchema: Yup.object({
             email: Yup.string()
                 .email("올바른 이메일 주소가 아닙니다.")
-                .required(
-                    "빠뜨린 부분이 있네요! 잊지 말고 이메일을 추가하세요."
-                ),
+                .required("빠뜨린 부분이 있네요! 잊지 말고 이메일을 추가하세요."),
             password: Yup.string()
                 .min(8, "비밀번호가 너무 짧네요! 8자 이상 입력하세요.")
                 .matches(/[a-zA-Z0-9]/, "더 강력한 비밀번호를 사용하세요.")
@@ -73,9 +71,7 @@ const SignupCard = (props) => {
                             value={formik.values.email}
                             placeholder="이메일"
                             _onBlur={(e) => {
-                                dispatch(
-                                    userActions.loginActionAPI(e.target.value)
-                                );
+                                dispatch(userActions.loginActionAPI(e.target.value));
                             }}
                         />
                         {formik.touched.email && formik.errors.email ? (
@@ -153,8 +149,8 @@ const SignupCard = (props) => {
                 Google으로 계속하기
             </Button>
             <Text font_size="11px" width="268px" mg="15px">
-                계속 진행하면 Pinterest 서비스 약관에 동의하고 개인정보
-                보호정책을 읽었음을 인정하는 것으로 간주됩니다.
+                계속 진행하면 Pinterest 서비스 약관에 동의하고 개인정보 보호정책을
+                읽었음을 인정하는 것으로 간주됩니다.
             </Text>
             {loginMode ? (
                 <Text

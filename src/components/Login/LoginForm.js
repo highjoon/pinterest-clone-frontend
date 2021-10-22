@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Text, Button, Input } from "../elements";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { Text, Button, Input } from "../../elements";
+import { actionCreators as userActions } from "../../redux/modules/user";
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -17,9 +17,7 @@ const LoginForm = () => {
         validationSchema: Yup.object({
             email: Yup.string()
                 .email("올바른 이메일 주소가 아닙니다.")
-                .required(
-                    "빠뜨린 부분이 있네요! 잊지 말고 이메일을 추가하세요."
-                ),
+                .required("빠뜨린 부분이 있네요! 잊지 말고 이메일을 추가하세요."),
             password: Yup.string()
                 .min(8, "비밀번호가 너무 짧네요! 6자 이상 입력하세요.")
                 .matches(/[a-zA-Z0-9]/, "더 강력한 비밀번호를 사용하세요.")
@@ -42,7 +40,7 @@ const LoginForm = () => {
                     type="text"
                     _onChange={formik.handleChange}
                     value={formik.values.email}
-                     placeholder="아이디를 입력하세요"
+                    placeholder="아이디를 입력하세요"
                 />
                 {formik.touched.email && formik.errors.email ? (
                     <Text margin="5px 0" color="#e60023">

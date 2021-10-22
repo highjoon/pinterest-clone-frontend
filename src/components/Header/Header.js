@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
@@ -11,9 +11,9 @@ import {
     Face,
     KeyboardArrowDown,
 } from "@material-ui/icons";
-import { useDetectOutsideClick } from "../hooks";
-import { actionCreators as searchActions } from "../redux/modules/search";
-import { DropDown } from "./";
+import { useDetectOutsideClick } from "../../hooks";
+import { actionCreators as searchActions } from "../../redux/modules/search";
+import { DropDown } from "../";
 
 const Header = (props) => {
     const dispatch = useDispatch();
@@ -30,11 +30,11 @@ const Header = (props) => {
     return (
         <Wrapper>
             <LogoWrapper>
-                <IconButton>
+                <IconButton onClick={() => history.push("/")}>
                     <Pinterest />
                 </IconButton>
             </LogoWrapper>
-            <HomePageButton onClick={() => history.push("/main")}>
+            <HomePageButton onClick={() => history.push("/")}>
                 <span>홈</span>
             </HomePageButton>
             <SearchWrapper>
@@ -43,10 +43,7 @@ const Header = (props) => {
                         <Search />
                     </IconButton>
                     <form>
-                        <input
-                            type="text"
-                            onChange={(e) => setInput(e.target.value)}
-                        />
+                        <input type="text" onChange={(e) => setInput(e.target.value)} />
                         <button type="submit" onClick={onSearchSubmit}></button>
                     </form>
                 </SearchBarWrapper>
@@ -60,7 +57,7 @@ const Header = (props) => {
                     <Textsms />
                 </IconButton>
 
-                <IconButton>
+                <IconButton onClick={() => history.push("/mypage")}>
                     <Face />
                 </IconButton>
 
@@ -85,6 +82,18 @@ const Wrapper = styled.div`
     padding: 12px 4px 4px 16px;
     background-color: white;
     color: black;
+
+    ${({ theme }) => theme.device.desktop} {
+        padding: 10px 4px 10px 10px;
+    }
+
+    ${({ theme }) => theme.device.tablet} {
+        padding: 10px 50px 10px 10px;
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        min-width: 30px;
+    }
 `; //전체 래핑하는 것
 
 const LogoWrapper = styled.div`
@@ -102,6 +111,14 @@ const HomeButtons = styled.div`
     border-radius: 24px;
     cursor: pointer;
     align-items: center;
+
+    ${({ theme }) => theme.device.tablet} {
+        display: none;
+    }
+
+    ${({ theme }) => theme.device.mobile} {
+        display: none;
+    }
 `;
 
 const HomePageButton = styled(HomeButtons)`
@@ -148,4 +165,8 @@ const SearchBarWrapper = styled.div`
     }
 `;
 
-const IconsWrapper = styled.div``;
+const IconsWrapper = styled.div`
+    ${({ theme }) => theme.device.mobile} {
+        display: none;
+    }
+`;

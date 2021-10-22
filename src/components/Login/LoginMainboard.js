@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { FaAngleDown } from "react-icons/fa";
-import SignupCard from "./SignupCard";
-import "./Mainboard.css";
-import Pin from "./Pin";
+import { SignupCard } from "../";
+import "../MainBoard/Mainboard.css";
+import { Pin } from "../";
 
 const LoginMainboard = (props) => {
     let { pins } = props;
+
+    const titleList = [
+        "저녁 식사 메뉴 아이디어를 찾아보세요",
+        "집안 꾸미기 아이디어를 찾아보세요",
+        "새로운 패션을 찾아보세요",
+        "정원 가꾸기 아이디어를 찾아보세요",
+    ];
+
+    const titleColor = ["#C28B00", "#618C7B", "#0076D3", "#407A57"];
+
     const [viewLogin, setViewLogin] = useState(false);
+    const [postTitle, setPostTitle] = useState(titleList[0]);
+    const [postTitleColor, setPostTitleColor] = useState(titleColor[0]);
+
     const scrollToBottom = () => {
         window.scrollTo({
             top: document.documentElement.scrollHeight,
@@ -16,11 +29,21 @@ const LoginMainboard = (props) => {
         setViewLogin(true);
     };
 
+    useEffect(() => {
+        let idx = 1;
+        const loop = setInterval(() => {
+            setPostTitle(titleList[idx]);
+            setPostTitleColor(titleColor[idx]);
+            idx++;
+            if (idx > 3) idx = 0;
+        }, 3000);
+    }, []);
+
     return (
         <div>
             <MainPost>
                 <PostOne>다음</PostOne>
-                <PostTwo>식사 메뉴 아이디어를 찾아보세요</PostTwo>
+                <PostTwo color={postTitleColor}>{postTitle}</PostTwo>
             </MainPost>
             <Wrapper>
                 <Container className="mainboard__container">
@@ -33,16 +56,19 @@ const LoginMainboard = (props) => {
             {viewLogin && (
                 <Drapper>
                     <FlexBox
+                        className=".mainboard__container"
                         style={{
                             transform: `translateY(40px)`,
                         }}
                     >
                         <div
+                            className="login"
                             style={{
                                 fontSize: "40px",
                                 margin: "7px 0px 1.8px 3.6px",
                                 color: "#fff",
                                 fontWeight: "700",
+                                padding: "0px 10rem 0px 0px",
                             }}
                         >
                             가입하여 더 많은 아이디어를
@@ -53,7 +79,7 @@ const LoginMainboard = (props) => {
                     <Back style={{}} />
                 </Drapper>
             )}
-            <ScrollBtn onClick={scrollToBottom}>
+            <ScrollBtn onClick={scrollToBottom} background_color={postTitleColor}>
                 <FaAngleDown size="30" />
             </ScrollBtn>
         </div>
@@ -83,7 +109,7 @@ const FlexBox = styled.div`
     overflow: hidden;
     width: 1318px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     z-index: 9999;
 `;
 
@@ -115,11 +141,11 @@ const PostOne = styled.div`
     font-size: 60px;
     font-weight: 900px;
 `;
-const PostTwo = styled.div`
+const PostTwo = styled.h1`
     width: 100%;
     font-size: 60px;
     font-weight: 900px;
-    color: #c28b00;
+    color: ${(props) => props.color};
 `;
 
 const BoxFloat = keyframes`
@@ -138,7 +164,7 @@ const ScrollBtn = styled.div`
     width: 60px;
     height: 60px;
     border-radius: 100%;
-    background-color: red;
+    background-color: ${(props) => props.background_color};
     text-align: center;
     display: flex;
     align-items: center;
@@ -146,9 +172,5 @@ const ScrollBtn = styled.div`
     color: #fff;
     z-index: 1;
     animation: ${BoxFloat} 1s 0.5s infinite linear alternate;
-    &:hover {
-        background-color: white;
-        color: black;
-        cursor: pointer;
-    }
+    cursor: pointer;
 `;

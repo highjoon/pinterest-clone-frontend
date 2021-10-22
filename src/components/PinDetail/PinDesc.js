@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Flex, Text } from "../elements";
+import { Flex, Text } from "../../elements";
 
 const PostDesc = (props) => {
     const { webSite, title, desc } = props;
@@ -11,12 +11,7 @@ const PostDesc = (props) => {
             justify_content="flex-start"
             align_items="start"
         >
-            <Text
-                width="100%"
-                font_size="14px"
-                font_weight="400"
-                text_align="left"
-            >
+            <Text width="100%" font_size="14px" font_weight="400" text_align="left">
                 <PageLink href={webSite}>{webSite}</PageLink>
             </Text>
             <PostTitle>
@@ -24,12 +19,7 @@ const PostDesc = (props) => {
                     {title}
                 </PageLink>
             </PostTitle>
-            <Text
-                width="100%"
-                font_size="14px"
-                font_weight="400"
-                text_align="left"
-            >
+            <Text width="100%" font_size="14px" font_weight="400" text_align="left">
                 {desc}
             </Text>
         </Flex>

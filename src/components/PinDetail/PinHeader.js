@@ -1,12 +1,9 @@
 import React, { useRef } from "react";
-import { useDetectOutsideClick } from "../hooks";
-import {
-    faEllipsisH,
-    faUpload,
-    faLink,
-} from "@fortawesome/free-solid-svg-icons";
-import { Button, Flex, Icon } from "../elements";
-import { DropDown } from "./";
+import styled from "styled-components";
+import { useDetectOutsideClick } from "../../hooks";
+import { faEllipsisH, faUpload, faLink } from "@fortawesome/free-solid-svg-icons";
+import { Button, Flex, Icon } from "../../elements";
+import { DropDown } from "../";
 
 const PostHeader = (props) => {
     const { imgURL } = props;
@@ -36,12 +33,13 @@ const PostHeader = (props) => {
     };
     return (
         <Flex
+            className="container"
             width="90%"
             justify_content="space-between"
             height="60px"
             margin="32px auto 0px auto"
         >
-            <Flex justify_content="space-evenly">
+            <Flex className="tools__container" justify_content="space-evenly">
                 <Button
                     width="48px"
                     height="48px"
@@ -69,10 +67,7 @@ const PostHeader = (props) => {
                     background_color="transparent"
                     border="none"
                 >
-                    <Icon
-                        className=" header__tools hover__bg"
-                        icon={faUpload}
-                    />
+                    <Icon className=" header__tools hover__bg" icon={faUpload} />
                 </Button>
                 <Button
                     width="48px"
@@ -82,14 +77,10 @@ const PostHeader = (props) => {
                     background_color="transparent"
                     border="none"
                 >
-                    <Icon
-                        className="header__tools"
-                        icon={faLink}
-                        _onClick={copyURL}
-                    />
+                    <Icon className="header__tools" icon={faLink} _onClick={copyURL} />
                 </Button>
             </Flex>
-            <Flex width="50%" justify_content="flex-end">
+            <Flex width="50%" justify_content="flex-end" className="saveBtn__container">
                 <Button
                     className="saveBtn"
                     width="64px"

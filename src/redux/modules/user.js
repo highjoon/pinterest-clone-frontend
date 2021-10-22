@@ -51,7 +51,7 @@ const loginAPI = (value) => {
                     })
                 );
                 window.alert("로그인 되었습니다!");
-                history.push("/main");
+                history.push("/");
             })
             .catch((err) => {
                 console.log(err);
@@ -78,11 +78,25 @@ const loginActionAPI = (email) => {
 
 const loginCheckAPI = () => {
     return (dispatch, getState, { history }) => {
-        if (getCookie("user_login")) {
-            dispatch(loginCheck(true));
-        } else {
-            dispatch(logOut());
-        }
+        axios({
+            method: "GET",
+            url: `http://3.35.219.78/`,
+            data: {},
+            headers: {
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                authorization: `Bearer ${getCookie("user_login")}`,
+            },
+        })
+            .then((res) => {
+                // 로그인이 안되어있는 상태
+                dispatch(loginCheck(false));
+            })
+            .catch((err) => {
+                // 로그인이 되어있는 상태
+                dispatch(loginCheck(true));
+            });
     };
 };
 
@@ -112,7 +126,7 @@ const signupAPI = (value) => {
 
                 console.log(res); // signup 정보 확인
                 window.alert("축하합니다");
-                history.push("/main");
+                history.push("/");
             })
             .catch((err) => {
                 console.log("signupAPI에서 오류발생", err);

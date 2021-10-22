@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { useDispatch, useSelector } from "react-redux";
 import unsplash from "./api/unsplash";
@@ -12,12 +12,7 @@ import { PinDetail, AddPin, MyPage, Search } from "./pages";
 function App() {
     const dispatch = useDispatch();
     const isLogin = useSelector((state) => state.user.is_login);
-
-    // const scrollToBottom = () =>
-    //     window.scrollTo({
-    //         top: document.documentElement.scrollHeight,
-    //         behavior: "smooth",
-    //     });
+    // 로그인이 되어있으면 true, 안되어있으면 false
 
     useEffect(() => {
         getNewPins();
@@ -73,25 +68,27 @@ function App() {
 
     return (
         <React.Fragment>
-            <ConnectedRouter history={history}>
-                {isLogin ? (
+            {isLogin ? (
+                <ConnectedRouter history={history}>
                     <Header onSubmit={onSearchSubmit} />
-                ) : (
-                    <LoginHeader />
-                )}
-                <Route path="/" exact>
-                    <LoginMainboard pins={pins} />
-                </Route>
-                <Route path="/main">
-                    <Mainboard />
-                </Route>
-                <Route path="/view/search/:word" exact>
-                    <Search />
-                </Route>
-                <Route path="/detail/:id" exact component={PinDetail} />
-                <Route path="/addpin" exact component={AddPin} />
-                <Route path="/mypage" exact component={MyPage} />
-            </ConnectedRouter>
+                    <Route path="/" exact>
+                        <Mainboard />
+                    </Route>
+                    <Route path="/view/search/:word" exact>
+                        <Search />
+                    </Route>
+                    <Route path="/detail/:id" exact component={PinDetail} />
+                    <Route path="/addpin" exact component={AddPin} />
+                    <Route path="/mypage" exact component={MyPage} />
+                </ConnectedRouter>
+            ) : (
+                <ConnectedRouter history={history}>
+                    <Route path="/" exact>
+                        <LoginHeader />
+                        <LoginMainboard pins={pins} />
+                    </Route>
+                </ConnectedRouter>
+            )}
         </React.Fragment>
     );
 }
