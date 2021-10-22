@@ -2,14 +2,20 @@ import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Text } from "../elements";
-
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 const DropDown = (props) => {
     const { _ref, className, imgURL, type } = props;
     const history = useHistory();
-
-    const logOut = () => {
-        window.alert("로그아웃!");
-    };
+    const dispatch = useDispatch();
+    const siteLogout = () => {
+        if (window.confirm('로그아웃 하시겠습니까?')) {
+          dispatch(userActions.logOut());
+          history.replace('/');
+        } else {
+          console.log('로그인 유지');
+        }
+      };
 
     if (type === "headerMenu") {
         return (
@@ -17,12 +23,12 @@ const DropDown = (props) => {
                 <MenuContainer>
                     <Menu ref={_ref} className={className} id="headerMenu">
                         <ul>
-                            <li onClick={() => history.push("#")}>
+                            <li onClick={() => history.push("/mypage")}>
                                 <Text margin="0" text_align="left">
                                     마이페이지
                                 </Text>
                             </li>
-                            <li onClick={logOut}>
+                            <li onClick={siteLogout}>
                                 <Text margin="0" text_align="left">
                                     로그아웃
                                 </Text>
