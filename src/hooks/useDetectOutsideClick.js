@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 /**
  * @param {React.node} el
  * @param {boolean} initialState
- */
+ */ // dropdownRef, false
 export const useDetectOutsideClick = (el, initialState) => {
     const [isActive, setIsActive] = useState(initialState);
 

@@ -165,3 +165,8 @@ git 오류
     이후 App.js에서 isLogin의 true/false 여부를 체크하여 로그인을 유지하는 방식. 맞는건지?
 
 -   로그인이 되었을 때와 안되었을 때 렌더링되어야 하는 컴포넌트가 다르기때문에, 삼항연산자를 통해 isLogin이 true면 거기에 맞는 컴포넌트를, false면 거기에 맞는 컴포넌트를 렌더링함. 맞는 방식인지?
+
+-   useSelector로 객체 요소인 배열을 받아올 때,
+    `const mainPins = useSelector((state) => state.main.list.list.list);`
+    이런 식으로 useSelector 상에서 하위 객체로 접근이 안되는 이유가 궁금함.
+    왜 Redux 상에서 나눈 다음에 전달해줘야만 하는건지?
