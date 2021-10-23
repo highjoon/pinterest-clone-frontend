@@ -105,7 +105,6 @@ const CommentDetail = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-
     & .tool {
         font-size: 15px;
     }
@@ -153,13 +152,11 @@ const Tools = styled.div`
     margin: 5px auto;
     text-align: left;
     gap: 10px;
-
     & .tool {
         &:hover,
         &:active {
             color: red;
         }
-
         &:active {
             transform: scale(1.1);
         }
@@ -174,16 +171,13 @@ const WriterInfo = styled.div`
 const Span = styled.span`
     font-size: 13px;
     font-weight: 400;
-
     &.writer {
         font-weight: 700;
     }
-
     &.date {
         margin-left: 7px;
         color: #767676;
     }
-
     &.likeNum {
         font-size: 15px;
         cursor: text;

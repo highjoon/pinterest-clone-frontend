@@ -16,7 +16,7 @@ const CommentContainer = (props) => {
 
     const comments = useSelector((state) => state.comment.comments);
     const storedId = props.storedId;
-   
+
     useEffect(() => {
         dispatch(commentActions.getCommentAPI(storedId));
     }, []);
